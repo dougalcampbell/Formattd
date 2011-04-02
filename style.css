@@ -134,7 +134,14 @@ body{
 	padding: 0 0 1em 0;
 }
 
+div.spacer {
+	margin-left: 7em;
+	position: relative;
+	float: left;
+}
+
 /** Colors, spacing, etc. **/
+
 #header-container {
 	background-color:#f16529;
 	color: white;
@@ -145,16 +152,6 @@ body{
 	   -moz-box-shadow:0 40px 40px -40px #AAA;
 	        box-shadow:0 40px 40px -40px #AAA;
 }
-
-/* * /
-#content article {
-	margin-left: 100px;
-}
-
-#content article header {
-	margin-left: -100px;
-}
-/* */
 
 
 h2, h3{
@@ -191,6 +188,10 @@ h2, h3{
 	bottom: 0;
 }
 
+h1{
+	font-size: 40px;
+}
+
 h2{
 	font-size: 35px;
 }
@@ -224,7 +225,6 @@ nav a {
 /* */
 aside#primary {
 	color:white;
-	padding:20px;
 	background-color:#f16529;
 	border-bottom:20px solid #e44d26;
 	margin-bottom:50px;
@@ -235,7 +235,7 @@ aside#primary {
 /* */
 
 aside.widget-area ul {
-	margin-left: 0;
+	margin: 20px;
 }
 
 aside.widget-area li {
@@ -248,7 +248,9 @@ aside li.widget-container {
 }
 
 #main p{
-	font:16px/26px Helvetica, Helvetica Neue, Arial;
+	font-family: Helvetica, Helvetica Neue, Arial;
+	font-size: 16px;
+	line-height: 26px;
 	text-shadow:none;
 }
 
@@ -261,8 +263,30 @@ article {
 }
 
 article header{
+	clear: left;
 	margin-bottom:0;
 	padding-bottom:0;
+}
+
+blockquote {
+	font-style: oblique;
+	font-size: 1.1em;
+	margin: 0.5em 3em;
+	position: relative;
+}
+
+blockquote::before {
+	content: "\201c";
+	font-size: 8em;
+	color: #eef;
+	position: absolute;
+	left: -0.3em;
+	top: -0.25em;
+	z-index: -1
+}
+
+blockquote p {
+	margin-bottom: 0.5em;
 }
 
 /* */
@@ -281,16 +305,43 @@ article header{
 	color:white;
 }
 
-.info{
-	position:absolute;
-	top:5px;
-	background-color:white;
-	padding:10px;
+.post-date {
+	display: block;
+	position: absolute;
+	left: -3em;
+	font-size: 1.5em;
+	border-radius: 0.5em;
+	text-align: center;
+	border: 1px solid #000;
+	width: 2em;
+	overflow: hidden;
+	background-color: #000;
+	color: #fff;
 }
 
-#jquery-test{
-	top:45px;
+.post-date .month {
+	display: block;
+	font-size: .5em;
+	line-height: 1;
+	padding: 0.4em 0;
 }
+
+.post-date .day {
+	display: block;
+	font-size: 1em;
+	line-height: 1;
+	padding: 0.2em 0;
+	background-color: #fff;
+	color: #000;
+}
+
+.post-date .year {
+	display: block;
+	font-size: .5em;
+	line-height: 1;
+	padding: 0.4em 0;
+}
+
 
 
 .ir { display: block; text-indent: -999em; overflow: hidden; background-repeat: no-repeat; text-align: left; direction: ltr; }

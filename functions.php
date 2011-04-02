@@ -34,8 +34,8 @@
  * For more information on hooks, actions, and filters, see http://codex.wordpress.org/Plugin_API.
  *
  * @package WordPress
- * @subpackage Twenty_Ten
- * @since Twenty Ten 1.0
+ * @subpackage Initializr
+ * @since Initializr 1.0
  */
 
 /**
@@ -45,7 +45,7 @@
  * is designed for, generally via the style.css stylesheet.
  */
 if ( ! isset( $content_width ) )
-	$content_width = 640;
+	$content_width = 680;
 
 /** Tell WordPress to run initializr_setup() when the 'after_setup_theme' hook is run. */
 add_action( 'after_setup_theme', 'initializr_setup' );
@@ -72,7 +72,7 @@ if ( ! function_exists( 'initializr_setup' ) ):
  * @uses register_default_headers() To register the default custom header images provided with the theme.
  * @uses set_post_thumbnail_size() To set a custom post thumbnail size.
  *
- * @since Twenty Ten 1.0
+ * @since Initializr 1.0
  */
 function initializr_setup() {
 
@@ -80,7 +80,7 @@ function initializr_setup() {
 	add_editor_style();
 
 	// Post Format support. You can also use the legacy "gallery" or "asides" (note the plural) categories.
-	add_theme_support( 'post-formats', array( 'aside', 'gallery' ) );
+	add_theme_support( 'post-formats', array( 'aside', 'link', 'image', 'video', 'quote', 'gallery', 'status' ) );
 
 	// This theme uses post thumbnails
 	add_theme_support( 'post-thumbnails' );
@@ -201,7 +201,7 @@ if ( ! function_exists( 'initializr_admin_header_style' ) ) :
  *
  * Referenced via add_custom_image_header() in initializr_setup().
  *
- * @since Twenty Ten 1.0
+ * @since Initializr 1.0
  */
 function initializr_admin_header_style() {
 ?>
@@ -226,7 +226,7 @@ endif;
  * To override this in a child theme, remove the filter and optionally add
  * your own function tied to the wp_page_menu_args filter hook.
  *
- * @since Twenty Ten 1.0
+ * @since Initializr 1.0
  */
 function initializr_page_menu_args( $args ) {
 	$args['show_home'] = true;
@@ -240,7 +240,7 @@ add_filter( 'wp_page_menu_args', 'initializr_page_menu_args' );
  * To override this length in a child theme, remove the filter and add your own
  * function tied to the excerpt_length filter hook.
  *
- * @since Twenty Ten 1.0
+ * @since Initializr 1.0
  * @return int
  */
 function initializr_excerpt_length( $length ) {
@@ -251,7 +251,7 @@ add_filter( 'excerpt_length', 'initializr_excerpt_length' );
 /**
  * Returns a "Continue Reading" link for excerpts
  *
- * @since Twenty Ten 1.0
+ * @since Initializr 1.0
  * @return string "Continue Reading" link
  */
 function initializr_continue_reading_link() {
@@ -264,7 +264,7 @@ function initializr_continue_reading_link() {
  * To override this in a child theme, remove the filter and add your own
  * function tied to the excerpt_more filter hook.
  *
- * @since Twenty Ten 1.0
+ * @since Initializr 1.0
  * @return string An ellipsis
  */
 function initializr_auto_excerpt_more( $more ) {
@@ -278,7 +278,7 @@ add_filter( 'excerpt_more', 'initializr_auto_excerpt_more' );
  * To override this link in a child theme, remove the filter and add your own
  * function tied to the get_the_excerpt filter hook.
  *
- * @since Twenty Ten 1.0
+ * @since Initializr 1.0
  * @return string Excerpt with a pretty "Continue Reading" link
  */
 function initializr_custom_excerpt_more( $output ) {
@@ -292,10 +292,10 @@ add_filter( 'get_the_excerpt', 'initializr_custom_excerpt_more' );
 /**
  * Remove inline styles printed when the gallery shortcode is used.
  *
- * Galleries are styled by the theme in Twenty Ten's style.css. This is just
+ * Galleries are styled by the theme in Initializr's style.css. This is just
  * a simple filter call that tells WordPress to not use the default styles.
  *
- * @since Twenty Ten 1.2
+ * @since Initializr 1.2
  */
 add_filter( 'use_default_gallery_style', '__return_false' );
 
@@ -305,8 +305,8 @@ add_filter( 'use_default_gallery_style', '__return_false' );
  * This function is no longer needed or used. Use the use_default_gallery_style
  * filter instead, as seen above.
  *
- * @since Twenty Ten 1.0
- * @deprecated Deprecated in Twenty Ten 1.2 for WordPress 3.1
+ * @since Initializr 1.0
+ * @deprecated Deprecated in Initializr 1.2 for WordPress 3.1
  *
  * @return string The gallery style filter, with the styles themselves removed.
  */
@@ -326,10 +326,11 @@ if ( ! function_exists( 'initializr_comment' ) ) :
  *
  * Used as a callback by wp_list_comments() for displaying the comments.
  *
- * @since Twenty Ten 1.0
+ * @since Initializr 1.0
  */
 function initializr_comment( $comment, $args, $depth ) {
 	$GLOBALS['comment'] = $comment;
+	$GLOBALS['depth'] = $depth;
 	switch ( $comment->comment_type ) :
 		case '' :
 	?>
@@ -377,7 +378,7 @@ endif;
  * To override initializr_widgets_init() in a child theme, remove the action hook and add your own
  * function tied to the init hook.
  *
- * @since Twenty Ten 1.0
+ * @since Initializr 1.0
  * @uses register_sidebar
  */
 function initializr_widgets_init() {
@@ -457,10 +458,10 @@ add_action( 'widgets_init', 'initializr_widgets_init' );
  * function tied to the widgets_init action hook.
  *
  * This function uses a filter (show_recent_comments_widget_style) new in WordPress 3.1
- * to remove the default style. Using Twenty Ten 1.2 in WordPress 3.0 will show the styles,
- * but they won't have any effect on the widget in default Twenty Ten styling.
+ * to remove the default style. Using Initializr 1.2 in WordPress 3.0 will show the styles,
+ * but they won't have any effect on the widget in default Initializr styling.
  *
- * @since Twenty Ten 1.0
+ * @since Initializr 1.0
  */
 function initializr_remove_recent_comments_style() {
 	add_filter( 'show_recent_comments_widget_style', '__return_false' );
@@ -471,7 +472,7 @@ if ( ! function_exists( 'initializr_posted_on' ) ) :
 /**
  * Prints HTML with meta information for the current post-date/time and author.
  *
- * @since Twenty Ten 1.0
+ * @since Initializr 1.0
  */
 function initializr_posted_on() {
 	printf( __( '<span class="%1$s">Posted on</span> %2$s <span class="meta-sep">by</span> %3$s', 'initializr' ),
@@ -494,7 +495,7 @@ if ( ! function_exists( 'initializr_posted_in' ) ) :
 /**
  * Prints HTML with meta information for the current post (category, tags and permalink).
  *
- * @since Twenty Ten 1.0
+ * @since Initializr 1.0
  */
 function initializr_posted_in() {
 	// Retrieves tag list of current post, separated by commas.
@@ -516,3 +517,14 @@ function initializr_posted_in() {
 	);
 }
 endif;
+
+if ( ! function_exists( 'initializr_post_date' ) ) :
+function initializr_post_date() {
+	$mon = get_the_time('M');
+	$day = get_the_time('d');
+	$year = get_the_time('Y');
+	
+	printf('<div class="post-date"><span class="month">%s</span><span class="day">%s</span><span class="year">%s</span></div>', $mon, $day, $year);
+}
+endif;
+
