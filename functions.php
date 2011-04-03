@@ -88,7 +88,14 @@ function initializr_setup() {
 	// Add default posts and comments RSS feed links to head
 	add_theme_support( 'automatic-feed-links' );
 
-	// Make theme available for translation
+	// Auto-add a float-right thumbnail featured image, when set
+        if (function_exists('set_post_thumbnail_size')) {
+        	set_post_thumbnail_size(150,150);
+	}
+	
+	add_filter('the_content', 'gr_post_thumbnail');
+	
+  	// Make theme available for translation
 	// Translations can be filed in the /languages/ directory
 	load_theme_textdomain( 'initializr', TEMPLATEPATH . '/languages' );
 
@@ -102,121 +109,15 @@ function initializr_setup() {
 		'primary' => __( 'Primary Navigation', 'initializr' ),
 	) );
 
-	// This theme allows users to set a custom background
-	add_custom_background();
-
-	// Your changeable header business starts here
-	if ( ! defined( 'HEADER_TEXTCOLOR' ) )
-		define( 'HEADER_TEXTCOLOR', '' );
-
-	// No CSS, just IMG call. The %s is a placeholder for the theme template directory URI.
-	if ( ! defined( 'HEADER_IMAGE' ) )
-		define( 'HEADER_IMAGE', '%s/images/headers/path.jpg' );
-
-	// The height and width of your custom header. You can hook into the theme's own filters to change these values.
-	// Add a filter to initializr_header_image_width and initializr_header_image_height to change these values.
-	define( 'HEADER_IMAGE_WIDTH', apply_filters( 'initializr_header_image_width', 940 ) );
-	define( 'HEADER_IMAGE_HEIGHT', apply_filters( 'initializr_header_image_height', 198 ) );
-
-	// We'll be using post thumbnails for custom header images on posts and pages.
-	// We want them to be 940 pixels wide by 198 pixels tall.
-	// Larger images will be auto-cropped to fit, smaller ones will be ignored. See header.php.
-	set_post_thumbnail_size( HEADER_IMAGE_WIDTH, HEADER_IMAGE_HEIGHT, true );
-
-	// Don't support text inside the header image.
-	if ( ! defined( 'NO_HEADER_TEXT' ) )
-		define( 'NO_HEADER_TEXT', true );
-
-	// Add a way for the custom header to be styled in the admin panel that controls
-	// custom headers. See initializr_admin_header_style(), below.
-	add_custom_image_header( '', 'initializr_admin_header_style' );
-
-	// ... and thus ends the changeable header business.
-
-	// Default custom headers packaged with the theme. %s is a placeholder for the theme template directory URI.
-	register_default_headers( array(
-		'berries' => array(
-			'url' => '%s/images/headers/berries.jpg',
-			'thumbnail_url' => '%s/images/headers/berries-thumbnail.jpg',
-			/* translators: header image description */
-			'description' => __( 'Berries', 'initializr' )
-		),
-		'cherryblossom' => array(
-			'url' => '%s/images/headers/cherryblossoms.jpg',
-			'thumbnail_url' => '%s/images/headers/cherryblossoms-thumbnail.jpg',
-			/* translators: header image description */
-			'description' => __( 'Cherry Blossoms', 'initializr' )
-		),
-		'concave' => array(
-			'url' => '%s/images/headers/concave.jpg',
-			'thumbnail_url' => '%s/images/headers/concave-thumbnail.jpg',
-			/* translators: header image description */
-			'description' => __( 'Concave', 'initializr' )
-		),
-		'fern' => array(
-			'url' => '%s/images/headers/fern.jpg',
-			'thumbnail_url' => '%s/images/headers/fern-thumbnail.jpg',
-			/* translators: header image description */
-			'description' => __( 'Fern', 'initializr' )
-		),
-		'forestfloor' => array(
-			'url' => '%s/images/headers/forestfloor.jpg',
-			'thumbnail_url' => '%s/images/headers/forestfloor-thumbnail.jpg',
-			/* translators: header image description */
-			'description' => __( 'Forest Floor', 'initializr' )
-		),
-		'inkwell' => array(
-			'url' => '%s/images/headers/inkwell.jpg',
-			'thumbnail_url' => '%s/images/headers/inkwell-thumbnail.jpg',
-			/* translators: header image description */
-			'description' => __( 'Inkwell', 'initializr' )
-		),
-		'path' => array(
-			'url' => '%s/images/headers/path.jpg',
-			'thumbnail_url' => '%s/images/headers/path-thumbnail.jpg',
-			/* translators: header image description */
-			'description' => __( 'Path', 'initializr' )
-		),
-		'sunset' => array(
-			'url' => '%s/images/headers/sunset.jpg',
-			'thumbnail_url' => '%s/images/headers/sunset-thumbnail.jpg',
-			/* translators: header image description */
-			'description' => __( 'Sunset', 'initializr' )
-		)
-	) );
 }
 endif;
 
+// Add X-UA-Compatible header in HTTP, not in HTML
 if ( ! function_exists( 'initializr_redirect' ) ) :
 function initializr_redirect() {
 	// Send as an HTTP header instead using meta http-equiv.
 	// See: http://lists.w3.org/Archives/Public/www-validator/2010Nov/0050.html
 	@header( 'X-UA-Compatible: IE=edge,chrome=1' );
-}
-endif;
-
-if ( ! function_exists( 'initializr_admin_header_style' ) ) :
-/**
- * Styles the header image displayed on the Appearance > Header admin panel.
- *
- * Referenced via add_custom_image_header() in initializr_setup().
- *
- * @since Initializr 1.0
- */
-function initializr_admin_header_style() {
-?>
-<style type="text/css">
-/* Shows the same border as on front end */
-#headimg {
-	border-bottom: 1px solid #000;
-	border-top: 4px solid #000;
-}
-/* If NO_HEADER_TEXT is false, you would style the text with these selectors:
-	#headimg #name { }
-	#headimg #desc { }
-*/
-</style>
-<?php
 }
 endif;
 
@@ -235,16 +136,16 @@ function initializr_page_menu_args( $args ) {
 add_filter( 'wp_page_menu_args', 'initializr_page_menu_args' );
 
 /**
- * Sets the post excerpt length to 40 characters.
+ * Sets the post excerpt length to 75 words.
  *
- * To override this length in a child theme, remove the filter and add your own
- * function tied to the excerpt_length filter hook.
+ * To override this length in a child theme, remove the filter and add your
+ * own function tied to the excerpt_length filter hook.
  *
  * @since Initializr 1.0
  * @return int
  */
 function initializr_excerpt_length( $length ) {
-	return 40;
+	return 75;
 }
 add_filter( 'excerpt_length', 'initializr_excerpt_length' );
 
@@ -298,24 +199,6 @@ add_filter( 'get_the_excerpt', 'initializr_custom_excerpt_more' );
  * @since Initializr 1.2
  */
 add_filter( 'use_default_gallery_style', '__return_false' );
-
-/**
- * Deprecated way to remove inline styles printed when the gallery shortcode is used.
- *
- * This function is no longer needed or used. Use the use_default_gallery_style
- * filter instead, as seen above.
- *
- * @since Initializr 1.0
- * @deprecated Deprecated in Initializr 1.2 for WordPress 3.1
- *
- * @return string The gallery style filter, with the styles themselves removed.
- */
-function initializr_remove_gallery_css( $css ) {
-	return preg_replace( "#<style type='text/css'>(.*?)</style>#s", '', $css );
-}
-// Backwards compatibility with WordPress 3.0.
-if ( version_compare( $GLOBALS['wp_version'], '3.1', '<' ) )
-	add_filter( 'gallery_style', 'initializr_remove_gallery_css' );
 
 if ( ! function_exists( 'initializr_comment' ) ) :
 /**
@@ -454,12 +337,13 @@ add_action( 'widgets_init', 'initializr_widgets_init' );
 /**
  * Removes the default styles that are packaged with the Recent Comments widget.
  *
- * To override this in a child theme, remove the filter and optionally add your own
- * function tied to the widgets_init action hook.
+ * To override this in a child theme, remove the filter and optionally add
+ * your own function tied to the widgets_init action hook.
  *
- * This function uses a filter (show_recent_comments_widget_style) new in WordPress 3.1
- * to remove the default style. Using Initializr 1.2 in WordPress 3.0 will show the styles,
- * but they won't have any effect on the widget in default Initializr styling.
+ * This function uses a filter (show_recent_comments_widget_style) new in
+ * WordPress 3.1 to remove the default style.  Using Initializr 1.2 in
+ * WordPress 3.0 will show the styles, but they won't have any effect on the
+ * widget in default Initializr styling.
  *
  * @since Initializr 1.0
  */
@@ -527,4 +411,58 @@ function initializr_post_date() {
 	printf('<div class="post-date"><span class="month">%s</span><span class="day">%s</span><span class="year">%s</span></div>', $mon, $day, $year);
 }
 endif;
+
+function gr_post_thumbnail($text) {
+  if (function_exists('has_post_thumbnail') && has_post_thumbnail() /* && (is_home() || is_singular()) */) {
+    $text = '<div style="float: right;">' . get_the_post_thumbnail() . '</div>' . $text;
+  }
+  
+  return $text;
+}
+
+/*
+ * Extract the title and url for a post object for a 'link' post format.
+ */
+function extract_first_link($post) {
+  $str = $post->post_content;
+  if ( preg_match('%^(https?://[^\s]*)$%', trim($str), $matches) ) {
+    $url = $matches[1];
+    if ($post->post_title) {
+      $title = $post->post_title;
+    } else {
+      $title = $url;
+    }
+    return array('url' => $url, 'title' => $title );
+  }
+  
+  preg_match('%<a\s*+(.*?)href=(["\']?)(.*?)\2(.*?)>(.*?)</a>%', trim($str), $matches);
+  $url = $matches[3];
+  $title = $post->post_title ? $post->post_title : $matches[5];
+  
+  return array( 'url' => $url, 'title' => $title );
+}
+
+function  timeAgo($timestamp=0, $granularity=2, $format='Y-m-d H:i:s'){
+        if ( 0 === $timestamp ) {
+          $timestamp = get_the_time("U");
+        }
+        $difference = time() - $timestamp;
+        if($difference < 0) return 'just now';
+        elseif($difference < 31536000){
+                $periods = array('mon' => 2592000, 'wk' => 604800,'day' => 86400,'hr' => 3600,'min' => 60,'sec' => 1);
+                $output = '';
+                foreach($periods as $key => $value){
+                        if($difference >= $value){
+                                $time = round($difference / $value);
+                                $difference %= $value;
+                                $output .= ($output ? ' ' : '').$time.' ';
+                                $output .= (($time > 1 /* && $key == 'day' */) ? $key.'s' : $key);
+                                $granularity--;
+                        }
+                        if($granularity == 0) break;
+                }
+                return ($output ? $output : 'Just now').' ago';
+        }
+        else return date($format, $timestamp);
+}
 

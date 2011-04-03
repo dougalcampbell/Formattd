@@ -88,8 +88,13 @@ a:hover { color: #036; }
     \\ ========================================== //
 */
 
+/** Basics **/
 body{
 	font-family:Helvetica, Helvetica Neue, Arial, sans-serif;
+}
+
+p,ul,ol,blockquote {
+	margin-bottom: 1em;
 }
 
 /** Positioning **/
@@ -136,6 +141,7 @@ body{
 
 div.spacer {
 	margin-left: 7em;
+	margin-right: 3em;
 	position: relative;
 	float: left;
 }
@@ -247,7 +253,7 @@ aside li.widget-container {
 	margin-bottom: 12px;
 }
 
-#main p{
+#main p {
 	font-family: Helvetica, Helvetica Neue, Arial;
 	font-size: 16px;
 	line-height: 26px;
@@ -259,7 +265,8 @@ aside li.widget-container {
 }
 
 article {
-	margin-bottom: 32px;
+	position: relative;
+	margin-bottom: 4em;
 }
 
 article header{
@@ -268,26 +275,128 @@ article header{
 	padding-bottom:0;
 }
 
-blockquote {
+article.format-aside {
+            width:70%;    
+            padding:1em; 
+            margin:2em auto 4em; 
+            background:#eee;
+            -webkit-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+               -moz-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+                    box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+            -moz-border-radius:4px; 
+                 border-radius:4px;
+}
+
+article.format-aside::before, article.format-aside::after {
+	content:"";
+	position:absolute;
+	z-index:-2;
+            bottom:15px;
+            left:10px;
+            width:50%;
+            height:20%;
+            max-width:300px;
+            -webkit-box-shadow:0 15px 10px rgba(0, 0, 0, 0.7);   
+               -moz-box-shadow:0 15px 10px rgba(0, 0, 0, 0.7);
+                    box-shadow:0 15px 10px rgba(0, 0, 0, 0.7);
+            -webkit-transform:rotate(-3deg);    
+               -moz-transform:rotate(-3deg);   
+                -ms-transform:rotate(-3deg);   
+                 -o-transform:rotate(-3deg);
+                    transform:rotate(-3deg);
+}
+
+article.format-aside::after {
+            right:10px; 
+            left:auto;
+            -webkit-transform:rotate(3deg);   
+               -moz-transform:rotate(3deg);  
+                -ms-transform:rotate(3deg);  
+                 -o-transform:rotate(3deg);
+                    transform:rotate(3deg);
+}
+
+
+#content article.format-aside p {
+	font-size: 1.3em;
+	font-style: oblique
+}
+
+article.format-quote {
+	border: 1px solid #eee;
+	-webkit-box-shadow: 8px 8px 16px 4px rgba(0,0,0, 0.4);
+	   -moz-box-shadow: 8px 8px 16px 4px rgba(0,0,0, 0.4);
+	        box-shadow: 8px 8px 16px 4px rgba(0,0,0, 0.4);
+	-webkit-border-radius: 10px;
+           -moz-border-radius: 10px;
+                border-radius: 10px;
+	padding: 10px;
+}
+
+article footer {
+	margin-top: 1em;
+}
+
+article.format-link {
+	padding-left: 40px;
+	min-height: 32px;
+	background-image: url(images/link.png);
+	background-repeat: no-repeat;
+}
+
+article.format-link header h2 {
+	font-size: 24px;
+}
+
+article.format-quote header h2 {
+	font-style: oblique;
+	font-size: 24px;
+}
+
+blockquote, article.format-quote .entry-content {
 	font-style: oblique;
 	font-size: 1.1em;
 	margin: 0.5em 3em;
 	position: relative;
 }
 
-blockquote::before {
-	content: "\201c";
-	font-size: 8em;
+blockquote::before, article.format-quote .entry-content::before {
+	content: "\201c" "\201d";
+	font-size: 16em;
 	color: #eef;
 	position: absolute;
-	left: -0.3em;
-	top: -0.25em;
+	left: -0.25em;
+	top: -0.3em;
 	z-index: -1
 }
 
 blockquote p {
 	margin-bottom: 0.5em;
 }
+
+article.format-image, article-format-video {
+	background-color: #333;
+	color: #eee;
+	padding: 2em;
+	text-align: center;
+	border: 1px solid #222;
+	-webkit-box-shadow: 8px 8px 16px 4px rgba(0,0,0, 0.4);
+	   -moz-box-shadow: 8px 8px 16px 4px rgba(0,0,0, 0.4);
+	        box-shadow: 8px 8px 16px 4px rgba(0,0,0, 0.4);
+	-webkit-border-radius: 10px;
+           -moz-border-radius: 10px;
+                border-radius: 10px;
+}
+
+article.format-image header a, article.format-video header a {
+	text-decoration: none;
+	margin: 0 auto;
+}
+
+article.format-image a:hover, article.format-video a:hover {
+	color: #fff;
+}
+
 
 /* */
 #footer-container {
@@ -309,14 +418,18 @@ blockquote p {
 	display: block;
 	position: absolute;
 	left: -3em;
+	top: 0px;
 	font-size: 1.5em;
 	border-radius: 0.5em;
 	text-align: center;
-	border: 1px solid #000;
+	border: 1px solid #f16529;
 	width: 2em;
 	overflow: hidden;
-	background-color: #000;
+	background-color: #f16529;
 	color: #fff;
+	-webkit-box-shadow: 8px 8px 6px -6px #AAA;
+	   -moz-box-shadow: 8px 8px 6px -6px #AAA;
+	        box-shadow: 8px 8px 6px -6px #AAA;
 }
 
 .post-date .month {
@@ -332,7 +445,7 @@ blockquote p {
 	line-height: 1;
 	padding: 0.2em 0;
 	background-color: #fff;
-	color: #000;
+	color: #f16529
 }
 
 .post-date .year {
