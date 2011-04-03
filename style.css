@@ -98,7 +98,7 @@ p,ul,ol,blockquote {
 }
 
 /** Positioning **/
-/* see: view-source:http://matthewjamestaylor.com/blog/perfect-2-column-right-menu.htm */
+/* see: http://matthewjamestaylor.com/blog/perfect-2-column-right-menu.htm */
 
 #header-container {
 	float: left;
@@ -206,20 +206,20 @@ h3{
 	font-size: 20px;
 }
 
-nav{
+#header-container nav{
 	float:right;
 	margin-top:100px;
 }
 
-nav ul, nav ul li{
+#header-container nav ul, #header-container nav ul li{
 	display:inline;
 }
 
-nav ul li {
+#header-container nav ul li {
 	margin-left: 3px;
 }
 
-nav a {
+#header-container nav a {
 	padding:20px;
 	color:white;
 	text-decoration:none;
@@ -322,7 +322,27 @@ article.format-aside::after {
 	font-style: oblique
 }
 
+article.format-status header h2 {
+	font-size: 24px;
+}
+
+article.format-status div.author-avatar {
+	position: absolute;
+	left: -60px;
+	border: 1px solid #eee;
+	-webkit-box-shadow: 4px 4px 16px 2px rgba(0,0,0, 0.4);
+	   -moz-box-shadow: 4px 4px 16px 2px rgba(0,0,0, 0.4);
+	        box-shadow: 4px 4px 16px 2px rgba(0,0,0, 0.4);
+}
+
+#main article.format-status div.entry-content p {
+	font-size: 1.6em;
+}
+
 article.format-quote {
+	width: 90%;
+	margin-left: auto;
+	margin-right: auto;
 	border: 1px solid #eee;
 	-webkit-box-shadow: 8px 8px 16px 4px rgba(0,0,0, 0.4);
 	   -moz-box-shadow: 8px 8px 16px 4px rgba(0,0,0, 0.4);
@@ -338,7 +358,8 @@ article footer {
 }
 
 article.format-link {
-	padding-left: 40px;
+	margin-left: -60px; /* hang background image in margin */
+	padding-left: 60px;
 	min-height: 32px;
 	background-image: url(images/link.png);
 	background-repeat: no-repeat;
@@ -374,7 +395,10 @@ blockquote p {
 	margin-bottom: 0.5em;
 }
 
-article.format-image, article-format-video {
+article.format-image, article.format-video {
+	width: 90%;
+	margin-left: auto;
+	margin-right: auto;
 	background-color: #333;
 	color: #eee;
 	padding: 2em;
@@ -397,6 +421,10 @@ article.format-image a:hover, article.format-video a:hover {
 	color: #fff;
 }
 
+.entry-summary {
+	font-style: oblique;
+}
+
 
 /* */
 #footer-container {
@@ -417,7 +445,7 @@ article.format-image a:hover, article.format-video a:hover {
 .post-date {
 	display: block;
 	position: absolute;
-	left: -3em;
+	left: -60px;
 	top: 0px;
 	font-size: 1.5em;
 	border-radius: 0.5em;
@@ -427,6 +455,12 @@ article.format-image a:hover, article.format-video a:hover {
 	overflow: hidden;
 	background-color: #f16529;
 	color: #fff;
+	-webkit-box-shadow: 8px 8px 6px -6px #AAA;
+	   -moz-box-shadow: 8px 8px 6px -6px #AAA;
+	        box-shadow: 8px 8px 6px -6px #AAA;
+}
+
+div.featured-image {
 	-webkit-box-shadow: 8px 8px 6px -6px #AAA;
 	   -moz-box-shadow: 8px 8px 6px -6px #AAA;
 	        box-shadow: 8px 8px 6px -6px #AAA;
@@ -455,7 +489,9 @@ article.format-image a:hover, article.format-video a:hover {
 	padding: 0.4em 0;
 }
 
-
+.align-right { float: right; };
+.align-left { float: left; };
+.align-center { margin-left: auto; margin-right: auto; text-align: center; }
 
 .ir { display: block; text-indent: -999em; overflow: hidden; background-repeat: no-repeat; text-align: left; direction: ltr; }
 .hidden { display: none; visibility: hidden; }
@@ -478,7 +514,7 @@ article.format-image a:hover, article.format-video a:hover {
 
 @media screen and (max-device-width: 480px) {
 
-  /* html { -webkit-text-size-adjust:none; -ms-text-size-adjust:none; } */
+  /* */ html { -webkit-text-size-adjust:none; -ms-text-size-adjust:none; } /* */
 }
 
 

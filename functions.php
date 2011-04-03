@@ -414,7 +414,7 @@ endif;
 
 function gr_post_thumbnail($text) {
   if (function_exists('has_post_thumbnail') && has_post_thumbnail() /* && (is_home() || is_singular()) */) {
-    $text = '<div style="float: right;">' . get_the_post_thumbnail() . '</div>' . $text;
+    $text = '<div class="featured-image align-right" style="float: right;">' . get_the_post_thumbnail() . '</div>' . $text;
   }
   
   return $text;
