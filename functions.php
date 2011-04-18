@@ -39,13 +39,31 @@
  */
 
 /**
+ * In wp-includes/vars.php we set some user-agent variables. 
+ * Let's be more specific about iPad vs iPhone:
+ */
+if ( $is_iphone && stripos($_SERVER['HTTP_USER_AGENT'], 'ipad') !== false ) {
+	$is_ipad = true;
+	$is_iphone = false;
+}
+
+if ( $is_iphone || $is_ipad )
+  $is_ios = true;
+
+
+
+/**
  * Set the content width based on the theme's design and stylesheet.
  *
  * Used to set the width of images and content. Should be equal to the width the theme
  * is designed for, generally via the style.css stylesheet.
  */
-if ( ! isset( $content_width ) )
-	$content_width = 680;
+if ( ! isset( $content_width ) ) {
+	$content_width = 480;
+        if ( $is_ipad ) {
+          $content_width = 380; // for ipad portrait orientation
+        }
+}
 
 /** Tell WordPress to run initializr_setup() when the 'after_setup_theme' hook is run. */
 add_action( 'after_setup_theme', 'initializr_setup' );
@@ -68,8 +86,6 @@ if ( ! function_exists( 'initializr_setup' ) ):
  * @uses add_custom_background() To add support for a custom background.
  * @uses add_editor_style() To style the visual editor.
  * @uses load_theme_textdomain() For translation/localization support.
- * @uses add_custom_image_header() To add support for a custom header.
- * @uses register_default_headers() To register the default custom header images provided with the theme.
  * @uses set_post_thumbnail_size() To set a custom post thumbnail size.
  *
  * @since Initializr 1.0
@@ -80,7 +96,7 @@ function initializr_setup() {
 	add_editor_style();
 
 	// Post Format support. You can also use the legacy "gallery" or "asides" (note the plural) categories.
-	add_theme_support( 'post-formats', array( 'aside', 'link', 'image', 'video', 'quote', 'gallery', 'status' ) );
+	add_theme_support( 'post-formats', array( 'aside', 'link', 'image', 'video', 'quote', 'gallery', 'status', 'chat', 'audio' ) );
 
 	// This theme uses post thumbnails
 	add_theme_support( 'post-thumbnails' );
@@ -90,7 +106,17 @@ function initializr_setup() {
 
 	// Auto-add a float-right thumbnail featured image, when set
         if (function_exists('set_post_thumbnail_size')) {
-        	set_post_thumbnail_size(150,150);
+        	set_post_thumbnail_size( 240, 240, true );
+	}
+	
+	if (function_exists('add_image_size')) {
+	  add_image_size('thumbnail', 125, 125, true);
+	  add_image_size('featured', 240, 240, true);
+	  add_image_size('small', 125, 170);
+	  add_image_size('medium', 240, 320);
+	  add_image_size('large', 380, 512);
+	  add_image_size('xlarge', 480, 640);
+	  add_image_size('full', 9999, 9999);
 	}
 	
 	add_filter('the_content', 'gr_post_thumbnail');
@@ -109,6 +135,8 @@ function initializr_setup() {
 		'primary' => __( 'Primary Navigation', 'initializr' ),
 	) );
 
+	// Add official.fm as an oembed provider:
+	wp_oembed_add_provider('http://official.fm/*', 'http://official.fm/services/oembed/');
 }
 endif;
 
@@ -216,7 +244,7 @@ function initializr_comment( $comment, $args, $depth ) {
 	$GLOBALS['depth'] = $depth;
 	switch ( $comment->comment_type ) :
 		case '' :
-	?>
+	?><!-- comment callback -->
 	<li <?php comment_class(); ?> id="li-comment-<?php comment_ID(); ?>">
 		<div id="comment-<?php comment_ID(); ?>">
 		<div class="comment-author vcard">
@@ -465,4 +493,87 @@ function  timeAgo($timestamp=0, $granularity=2, $format='Y-m-d H:i:s'){
         }
         else return date($format, $timestamp);
 }
+
+
+function process_chat( $content ) {
+  if (has_post_format('chat')) {
+    $content = preg_replace('%<p>\s*([^:]+):(\s.*)</p>%e', '\'<p class="chat"><span class="person person-\'.sanitize_title(\'\\1\').\'">\\1:</span>\\2</p>\'', $content);
+  }
+  return $content; 
+}
+
+/**
+ * If a post comes from XML-RPC or APP, try to detect and set the post
+ * format
+ */
+function auto_post_format_detect( $data, $postarr ) {
+  global $dc_auto_post_format;
+  if ( defined('XMLRPC_REQUEST') || defined('APP_REQUEST') ) {
+    /* Look for an image at the beginning of a post. Optionally preceded
+     * by <br> or <p> tags. Optionally linked with an <a> tag.
+     */
+		if ( preg_match('%^(((<p[^>]*?>)?)((<br ?/?>)*?))*?(<a\s+[^>]+>)?<img\s+[^>]+>%', $post->post_content) ) {
+		  $dc_auto_post_format = 'image';
+    }
+    
+    /* This is insufficient. And transcoding video is a real pain.  I think
+     * the best way to handle this is to upload videos to a dedicated
+     * service (YouTube, Vimeo, Flickr, etc), and use plugins to import them
+     * as posts from there. Maybe one day there will be a universal codec
+     * and container format shared by all browsers and mobile devices. Yeah,
+     * right.
+     */
+    /*
+		if ( preg_match('%^(<br ?/?>)*<video\s+[^>]+>%', $post->post_content) ) {
+		  $dc_auto_post_format = 'video';
+    }
+    */
+    
+    /*
+     * Look for :FORMAT: in the first 30 chars. If we see it, use that
+     * as the post format. E.g., '<p>:STATUS:Hanging with my buds</p>'
+     * would become a 'format-status' post.
+     */
+    $count = preg_match('%:([A-Za-z]+):%', substr($data['post_content'], 0, 30), $matches);
+    if ( $count ) {
+      // Strip our :FORMAT: sentinel string from the content
+      $data['post_content'] = preg_replace('%:'.$matches[1].':\s*%i', '', $data['post_content'], 1);
+      $dc_auto_post_format = $matches[1];
+    }
+
+    /*
+     * Look for [gallery] in the post. If we see it, set the gallery post
+     * format.
+     */
+    if ( false !== strpos('[gallery]', $data['post_content']) ) {
+      $dc_auto_post_format = 'gallery';
+    }
+
+    if ( $dc_auto_post_format ) {
+      add_action( 'wp_insert_post', 'auto_post_format_set', 10, 2 );
+    }
+  }
+  
+  return $data;
+}
+
+function auto_post_format_set( $postid, $post ) {
+  global $dc_auto_post_format;
+  // Validate format
+  $dc_auto_post_format = sanitize_key($dc_auto_post_format);
+  error_log("Validating: $dc_auto_post_format");
+  
+  if ( !array_key_exists( $dc_auto_post_format, get_post_format_strings() ) ) {
+    // not a valid post format. do nothing.
+    return;
+  }
+  error_log("Setting: $dc_auto_post_format");
+  set_post_format( $postid, $dc_auto_post_format );
+}
+
+
+// Run after WP html formatting
+add_filter('the_content', 'process_chat', 15);
+
+add_filter('wp_insert_post_data', 'auto_post_format_detect', 10, 2);
 

@@ -1,5 +1,13 @@
 /**
  Theme name: initializr
+ Theme URI: http://wordpress.org/
+ Description: 
+ Author: Dougal Campbell
+ Author URI: http://dougal.gunters.org/
+ Version: 1.0
+ License: GNU General Public License
+ License URI: license.txt
+ Tags: fluid-width, post-formats, threaded-comments, sticky-post, translation-ready, microformats
  **/
 /* ==== Scroll down to find where to put your styles :) ==== */
 
@@ -91,6 +99,8 @@ a:hover { color: #036; }
 /** Basics **/
 body{
 	font-family:Helvetica, Helvetica Neue, Arial, sans-serif;
+	background-color: #ffffb5;
+	color: #0f0f0f;
 }
 
 p,ul,ol,blockquote {
@@ -143,7 +153,6 @@ div.spacer {
 	margin-left: 7em;
 	margin-right: 3em;
 	position: relative;
-	float: left;
 }
 
 /** Colors, spacing, etc. **/
@@ -152,13 +161,16 @@ div.spacer {
 	background-color:#f16529;
 	color: white;
 	height:130px;
-	border-bottom:20px solid #e44d26;
-	margin-bottom:50px;
+	margin-bottom:30px;
 	-webkit-box-shadow:0 40px 40px -40px #AAA;
 	   -moz-box-shadow:0 40px 40px -40px #AAA;
 	        box-shadow:0 40px 40px -40px #AAA;
 }
 
+#nav-above,#nav-below {
+	font-size: 1.25em;
+	font-variant: small-caps;
+}
 
 h2, h3{
 	margin: 0;
@@ -195,20 +207,20 @@ h2, h3{
 }
 
 h1{
-	font-size: 40px;
+	font-size: 2.5em;
 }
 
 h2{
-	font-size: 35px;
+	font-size: 2.2em;
 }
 
 h3{
-	font-size: 20px;
+	font-size: 1.3em;
 }
 
 #header-container nav{
 	float:right;
-	margin-top:100px;
+	margin-top:95px;
 }
 
 #header-container nav ul, #header-container nav ul li{
@@ -216,11 +228,11 @@ h3{
 }
 
 #header-container nav ul li {
-	margin-left: 3px;
+	margin-left: 5px;
 }
 
 #header-container nav a {
-	padding:20px;
+	padding:20px 10px;
 	color:white;
 	text-decoration:none;
 	background-color:#e44d26;
@@ -232,11 +244,10 @@ h3{
 aside#primary {
 	color:white;
 	background-color:#f16529;
-	border-bottom:20px solid #e44d26;
-	margin-bottom:50px;
-	-webkit-box-shadow:0 0px 40px -10px #AAA;
-	   -moz-box-shadow:0 0px 40px -10px #AAA;
-	        box-shadow:0 0px 40px -10px #AAA;	
+	margin-bottom:30px;
+	-webkit-box-shadow:0 0px 8px 0px #AAA;
+	   -moz-box-shadow:0 0px 8px 0px #AAA;
+	        box-shadow:0 0px 8px 0px #AAA;	
 }
 /* */
 
@@ -326,7 +337,7 @@ article.format-status header h2 {
 	font-size: 24px;
 }
 
-article.format-status div.author-avatar {
+article.format-status div.author-avatar img {
 	position: absolute;
 	left: -60px;
 	border: 1px solid #eee;
@@ -340,7 +351,7 @@ article.format-status div.author-avatar {
 }
 
 article.format-quote {
-	width: 90%;
+	width: 80%;
 	margin-left: auto;
 	margin-right: auto;
 	border: 1px solid #eee;
@@ -357,12 +368,12 @@ article footer {
 	margin-top: 1em;
 }
 
-article.format-link {
-	margin-left: -60px; /* hang background image in margin */
-	padding-left: 60px;
-	min-height: 32px;
-	background-image: url(images/link.png);
-	background-repeat: no-repeat;
+article.format-link::before {
+	content: url(images/link.png);
+	width: 32px;
+	height: 32px;
+	position: absolute;
+	left: -60px;
 }
 
 article.format-link header h2 {
@@ -395,7 +406,7 @@ blockquote p {
 	margin-bottom: 0.5em;
 }
 
-article.format-image, article.format-video {
+article.format-image, article.format-video, article.format-gallery {
 	width: 90%;
 	margin-left: auto;
 	margin-right: auto;
@@ -412,6 +423,24 @@ article.format-image, article.format-video {
                 border-radius: 10px;
 }
 
+div.gallery-columns-3 dl {
+	width: 33%;
+	float: left;
+	margin-bottom: 3em;
+}
+
+article.format-gallery dl {
+	display: inline;
+}
+
+article.format-video::before {
+	content: url(images/film.png);
+	width: 32px;
+	height: 32px;
+	position: absolute;
+	left: -60px;
+}
+
 article.format-image header a, article.format-video header a {
 	text-decoration: none;
 	margin: 0 auto;
@@ -419,6 +448,32 @@ article.format-image header a, article.format-video header a {
 
 article.format-image a:hover, article.format-video a:hover {
 	color: #fff;
+}
+
+#main article.format-chat div.entry-content p {
+	font-size: 1.4em;
+}
+
+article.format-chat::before {
+	content: url(images/comments.png);
+	width: 32px;
+	height: 32px;
+	position: absolute;
+	left: -60px;
+}
+
+article.format-chat span.person {
+	font-weight: bold;
+}
+
+article.format-audio::before {
+	content: url(images/music.png);
+	width: 32px;
+	height: 32px;
+	position: absolute;
+	left: -60px;
+}
+
 }
 
 .entry-summary {
@@ -461,9 +516,17 @@ article.format-image a:hover, article.format-video a:hover {
 }
 
 div.featured-image {
-	-webkit-box-shadow: 8px 8px 6px -6px #AAA;
-	   -moz-box-shadow: 8px 8px 6px -6px #AAA;
-	        box-shadow: 8px 8px 6px -6px #AAA;
+	display: inline;
+	float: right;
+}
+
+div.featured-image img{
+	-webkit-box-shadow: 10px 12px 8px -4px #AAA;
+	   -moz-box-shadow: 10px 12px 8px -4px #AAA;
+	        box-shadow: 10px 12px 8px -4px #AAA;
+	-webkit-border-radius: 6px;
+           -moz-border-radius: 6px;
+                border-radius: 6px;
 }
 
 .post-date .month {
@@ -488,6 +551,54 @@ div.featured-image {
 	line-height: 1;
 	padding: 0.4em 0;
 }
+
+div.page-link {
+	font-size: 1.25em;
+}
+
+div.page-link a {
+	margin-left: 0.25em;
+}
+
+#entry-author-info {
+	padding:1.5em;
+	margin: 2em 4em;
+	border: 1px solid #ccc;
+	-webkit-border-radius: 6px;
+           -moz-border-radius: 6px;
+                border-radius: 6px;
+	-webkit-box-shadow: 8px 8px 16px 4px rgba(0,0,0, 0.4);
+	   -moz-box-shadow: 8px 8px 16px 4px rgba(0,0,0, 0.4);
+	        box-shadow: 8px 8px 16px 4px rgba(0,0,0, 0.4);
+}
+
+#author-avatar {
+	float: right;
+	width: 60px;
+	margin: 0 0 0.3em 0.3em;
+}
+
+#author-avatar img {
+	border: 1px solid #eee;
+	-webkit-border-radius: 4px;
+           -moz-border-radius: 4px;
+                border-radius: 4px;
+	-webkit-box-shadow: 4px 4px 16px 2px rgba(0,0,0, 0.4);
+	   -moz-box-shadow: 4px 4px 16px 2px rgba(0,0,0, 0.4);
+	        box-shadow: 4px 4px 16px 2px rgba(0,0,0, 0.4);
+}
+
+#author-description {
+	margin: 0.5em 0;
+}
+
+#author-link {
+	clear: both;
+	margin: 0.5em 0;
+	font-size: 1.25em;
+}
+
+
 
 .align-right { float: right; };
 .align-left { float: left; };
@@ -514,7 +625,7 @@ div.featured-image {
 
 @media screen and (max-device-width: 480px) {
 
-  /* */ html { -webkit-text-size-adjust:none; -ms-text-size-adjust:none; } /* */
+  /* * / html { -webkit-text-size-adjust:none; -ms-text-size-adjust:none; } /* */
 }
 
 
