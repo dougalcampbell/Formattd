@@ -561,13 +561,11 @@ function auto_post_format_set( $postid, $post ) {
   global $dc_auto_post_format;
   // Validate format
   $dc_auto_post_format = sanitize_key($dc_auto_post_format);
-  error_log("Validating: $dc_auto_post_format");
   
   if ( !array_key_exists( $dc_auto_post_format, get_post_format_strings() ) ) {
     // not a valid post format. do nothing.
     return;
   }
-  error_log("Setting: $dc_auto_post_format");
   set_post_format( $postid, $dc_auto_post_format );
 }
 
