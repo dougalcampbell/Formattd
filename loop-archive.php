@@ -1,6 +1,6 @@
 <?php
 /**
- * The loop that displays posts.
+ * The loop that displays archives.
  *
  * The loop displays the posts and the post content.  See
  * http://codex.wordpress.org/The_Loop to understand it and
@@ -56,12 +56,12 @@
 <?php while ( have_posts() ) : the_post();
 
 $comment_number_template = _n( '1 Comments', '% Comments', get_comments_number(), 'initializr' );
+
 // use a format template
 $format = get_post_format();
 if (! $format ) $format = 'standard';
 
-echo "\n<!-- post_format: '$format' -->\n";
-get_template_part('format', $format);
+get_template_part('format-archive', $format);
 
 endwhile; // End the loop. Whew. ?>
 

@@ -99,8 +99,8 @@ a:hover { color: #036; }
 /** Basics **/
 body{
 	font-family:Helvetica, Helvetica Neue, Arial, sans-serif;
-	background-color: #ffffb5;
-	color: #0f0f0f;
+	background-color: #fffff0;
+	color: #222;
 }
 
 p,ul,ol,blockquote {
@@ -474,7 +474,6 @@ article.format-audio::before {
 	left: -60px;
 }
 
-}
 
 .entry-summary {
 	font-style: oblique;
@@ -563,6 +562,8 @@ div.page-link a {
 #entry-author-info {
 	padding:1.5em;
 	margin: 2em 4em;
+	background-color: #333;
+	color: #eee;
 	border: 1px solid #ccc;
 	-webkit-border-radius: 6px;
            -moz-border-radius: 6px;
@@ -598,6 +599,9 @@ div.page-link a {
 	font-size: 1.25em;
 }
 
+.comment-form-comment label {
+	display: block;
+}
 
 
 .align-right { float: right; };
