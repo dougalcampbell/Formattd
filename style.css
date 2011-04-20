@@ -187,7 +187,6 @@ h2, h3{
 }
 
 #title{
-	font-size: 80px;
 	position: absolute;
 	top: 0;
 }
@@ -207,21 +206,21 @@ h2, h3{
 }
 
 h1{
-	font-size: 2.5em;
+	font-size: 3.0em;
 }
 
 h2{
-	font-size: 2.2em;
+	font-size: 2.5em;
 }
 
 h3{
-	font-size: 1.3em;
+	font-size: 2.0em;
 }
 
 /* Main nav */
 
 #header-container nav{
-	float:right;
+	float: left;
 	margin-top:95px;
 }
 
@@ -243,29 +242,68 @@ h3{
 /* 
 	LEVEL ONE
 */
-#header-container nav ul                         { position: relative; z-index: 99;}
-/* #header-container nav ul li                      { font-weight: bold; float: left; zoom: 1; background: #ccc; } */
-/* #header-container nav ul li:last-child a         { border-right: none; } /* Doesn't work in IE */
-/*#header-container nav ul li.hover,
-#header-container nav ul li:hover                { background: #F3D673; color: black; position: relative; }
-#header-container nav ul li.hover a              { color: black; }
-*/
+#header-container nav ul { 
+	position: relative; 
+	z-index: 99;
+}
+
+#header-container nav ul li { 
+	/* font-weight: bold; */
+	float: left; 
+	zoom: 1; 
+	/* background: #ccc; */
+} 
+
+#header-container nav ul li:last-child a { 
+	/* border-right: none; */
+} /* Doesn't work in IE */
+#header-container nav ul li.hover,
+#header-container nav ul li:hover { 
+	/* background: #F3D673; */
+	/*  color: black; */
+	position: relative; 
+}
+
+#header-container nav ul li.hover a { 
+	/* color: black; */
+}
 
 /* 
 	LEVEL TWO
 */
-#header-container nav ul ul 						{ width: 220px; visibility: hidden; position: absolute; top: 100%; left: 0; }
-#header-container nav ul ul li 					{ font-weight: normal; background: #f6f6f6; color: #000; 
-									  border-bottom: 1px solid #ccc; float: none; }
+#header-container nav ul ul { 
+	width: 220px; 
+	visibility: hidden; 
+	position: absolute; 
+	top: 20px; left: -5px; 
+}
+
+#header-container nav ul ul li { 
+	font-weight: normal; 
+	background: #f6f6f6; 
+	color: #000; 
+	border-bottom: 1px solid #ccc; 
+	float: none; 
+}
 									  
                                     /* IE 6 & 7 Needs Inline Block */
-#header-container nav ul ul li a					{ border-right: none; width: 100%; display: inline-block; } 
+#header-container nav ul ul li a { 
+	border-right: none; 
+	width: 100%; 
+	display: inline-block; 
+} 
 
 /* 
 	LEVEL THREE
 */
-#header-container nav ul ul ul 					{ left: 100%; top: 0; }
-#header-container nav ul li:hover > ul 			{ visibility: visible; }
+#header-container nav ul ul ul { 
+	left: 100%; 
+	top: 0; 
+}
+
+#header-container nav ul li:hover > ul { 
+	visibility: visible; 
+}
 
 
 .skip-link { display: none; }
@@ -293,6 +331,29 @@ aside.widget-area li {
 aside li.widget-container {
 	margin-bottom: 12px;
 }
+
+aside.widget-area a, #footer-container a {
+	color: #eee;
+	text-decoration: none;
+}
+
+aside.widget-area a:link, #footer-container a:link {
+
+}
+
+aside.widget-area a:visited, #footer-container a:visited {
+	color: #ccc;
+}
+
+aside.widget-area a:hover, #footer-container a:hover {
+	color: #fff;
+}
+
+aside.widget-area a:active, #footer-container a:active {
+
+}
+
+
 
 #main p {
 	font-family: Helvetica, Helvetica Neue, Arial;
@@ -550,9 +611,11 @@ div.featured-image {
 }
 
 div.featured-image img{
-	-webkit-box-shadow: 10px 12px 8px -4px #AAA;
-	   -moz-box-shadow: 10px 12px 8px -4px #AAA;
-	        box-shadow: 10px 12px 8px -4px #AAA;
+	background-color: white;
+	border: 1px solid #eee;
+	-webkit-box-shadow: 4px 4px 8px 4px #AAA;
+	   -moz-box-shadow: 4px 4px 8px 4px #AAA;
+	        box-shadow: 4px 4px 8px 4px #AAA;
 	-webkit-border-radius: 6px;
            -moz-border-radius: 6px;
                 border-radius: 6px;
