@@ -234,9 +234,14 @@ h3{
 
 #header-container nav a {
 	padding:20px 10px;
-	color:white;
+	color: #eee;
 	text-decoration:none;
 	background-color:#e44d26;
+}
+
+#header-container nav a:hover {
+	color: #fff;
+	background-color: #e8512a;
 }
 
 /* 
