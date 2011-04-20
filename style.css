@@ -514,8 +514,32 @@ article.format-image, article.format-video, article.format-gallery {
                 border-radius: 10px;
 }
 
+div.gallery-columns-2 dl {
+	width: 49%;
+	float: left;
+	margin-bottom: 3em;
+}
+
 div.gallery-columns-3 dl {
 	width: 33%;
+	float: left;
+	margin-bottom: 3em;
+}
+
+div.gallery-columns-4 dl {
+	width: 24%;
+	float: left;
+	margin-bottom: 3em;
+}
+
+div.gallery-columns-5 dl {
+	width: 19%;
+	float: left;
+	margin-bottom: 3em;
+}
+
+div.gallery-columns-6 dl {
+	width: 16.5%;
 	float: left;
 	margin-bottom: 3em;
 }
