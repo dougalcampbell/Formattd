@@ -160,9 +160,11 @@ endif;
  *
  * @since Initializr 1.0
  */
+if (! function_exists('initializr_page_menu_args') ) {
 function initializr_page_menu_args( $args ) {
 	$args['show_home'] = true;
 	return $args;
+}
 }
 add_filter( 'wp_page_menu_args', 'initializr_page_menu_args' );
 
@@ -186,8 +188,10 @@ add_filter( 'excerpt_length', 'initializr_excerpt_length' );
  * @since Initializr 1.0
  * @return string "Continue Reading" link
  */
+if (! function_exists('initializr_continue_reading_link') ) {
 function initializr_continue_reading_link() {
 	return ' <a href="'. get_permalink() . '">' . __( 'Continue reading <span class="meta-nav">&rarr;</span>', 'initializr' ) . '</a>';
+}
 }
 
 /**
