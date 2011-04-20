@@ -137,6 +137,9 @@ function initializr_setup() {
 
 	// Add official.fm as an oembed provider:
 	wp_oembed_add_provider('http://official.fm/*', 'http://official.fm/services/oembed/');
+
+	// Dropdown menus
+        wp_enqueue_script('dropdown', trailingslashit( get_stylesheet_directory_uri() ) . 'js/jquery.dropdownPlain.js', array('jquery'), '1.0');
 }
 endif;
 
