@@ -313,7 +313,9 @@ h3{
 
 .skip-link { display: none; }
 
-/* */
+
+/* Primary sidebar */
+
 aside#primary {
 	color:white;
 	background-color:#f16529;
@@ -322,10 +324,13 @@ aside#primary {
 	   -moz-box-shadow:0 0px 8px 0px #AAA;
 	        box-shadow:0 0px 8px 0px #AAA;	
 }
-/* */
+
+#primary h3 {
+	font-size: 1.4em;
+}
 
 aside.widget-area ul {
-	margin: 20px;
+	margin: 5px 10px;
 }
 
 aside.widget-area li {
