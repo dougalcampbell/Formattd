@@ -2,6 +2,7 @@
 <div id="content">
 <div class="spacer">
 <?php
+	get_sidebar( 'index-top' );
 	get_template_part('loop', 'single');	
 ?>
 </div><!--.spacer-->

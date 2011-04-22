@@ -316,8 +316,19 @@ function initializr_widgets_init() {
 	// Area 2, located below the Primary Widget Area in the sidebar. Empty by default.
 	register_sidebar( array(
 		'name' => __( 'Secondary Widget Area', 'initializr' ),
-		'id' => 'secondary-widget-area',
+		'id' => 'secondary-aside',
 		'description' => __( 'The secondary widget area', 'initializr' ),
+		'before_widget' => '<li id="%1$s" class="widget-container %2$s">',
+		'after_widget' => '</li>',
+		'before_title' => '<h3 class="widget-title">',
+		'after_title' => '</h3>',
+	) );
+
+	// Top of the content area. Empty by default.
+	register_sidebar( array(
+		'name' => __( 'Index Top Widget Area', 'initializr' ),
+		'id' => 'index-top',
+		'description' => __( 'Appears between header and content on index and single post pages.', 'initializr' ),
 		'before_widget' => '<li id="%1$s" class="widget-container %2$s">',
 		'after_widget' => '</li>',
 		'before_title' => '<h3 class="widget-title">',
