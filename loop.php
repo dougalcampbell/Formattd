@@ -54,8 +54,14 @@
 	 * Without further ado, the loop:
 	 */ ?>
 <?php while ( have_posts() ) : the_post();
-
 $comment_number_template = _n( '1 Comments', '% Comments', get_comments_number(), 'initializr' );
+
+// When displaying more than one post, put an interstitial widget
+// area between the first and second post:
+if ( 2 == ++$count ) {
+	dynamic_sidebar( 'index-insert' );
+}
+
 // use a format template
 $format = get_post_format();
 if (! $format ) $format = 'standard';

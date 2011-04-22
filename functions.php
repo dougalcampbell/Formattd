@@ -302,7 +302,18 @@ endif;
  * @uses register_sidebar
  */
 function initializr_widgets_init() {
-	// Area 1, located at the top of the sidebar.
+	// Header widget area
+	register_sidebar( array(
+		'name' => __( 'Above Header Widget Area', 'initializr' ),
+		'id' => 'above-header',
+		'description' => __( 'In the header, before site name', 'initializr' ),
+		'before_widget' => '<li id="%1$s" class="widget-container %2$s">',
+		'after_widget' => '</li>',
+		'before_title' => '<h3 class="widget-title">',
+		'after_title' => '</h3>',
+	) );
+
+	// Primary sidebar, located at the top of the sidebar.
 	register_sidebar( array(
 		'name' => __( 'Primary Widget Area', 'initializr' ),
 		'id' => 'primary-aside',
@@ -313,7 +324,7 @@ function initializr_widgets_init() {
 		'after_title' => '</h3>',
 	) );
 
-	// Area 2, located below the Primary Widget Area in the sidebar. Empty by default.
+	// Secondary sidebar, located below the Primary Widget Area in the sidebar. Empty by default.
 	register_sidebar( array(
 		'name' => __( 'Secondary Widget Area', 'initializr' ),
 		'id' => 'secondary-aside',
@@ -335,7 +346,73 @@ function initializr_widgets_init() {
 		'after_title' => '</h3>',
 	) );
 
-	// Area 3, located in the footer. Empty by default.
+	// Top of the content area. Empty by default.
+	register_sidebar( array(
+		'name' => __( 'Index Insert Widget Area', 'initializr' ),
+		'id' => 'index-insert',
+		'description' => __( 'Appears between 1st and 2nd post on index page.', 'initializr' ),
+		'before_widget' => '<li id="%1$s" class="widget-container %2$s">',
+		'after_widget' => '</li>',
+		'before_title' => '<h3 class="widget-title">',
+		'after_title' => '</h3>',
+	) );
+
+	// Top of the content area. Empty by default.
+	register_sidebar( array(
+		'name' => __( 'Index Bottom Widget Area', 'initializr' ),
+		'id' => 'index-bottom',
+		'description' => __( 'Appears below posts on index page.', 'initializr' ),
+		'before_widget' => '<li id="%1$s" class="widget-container %2$s">',
+		'after_widget' => '</li>',
+		'before_title' => '<h3 class="widget-title">',
+		'after_title' => '</h3>',
+	) );
+
+	// Top of the content area. Empty by default.
+	register_sidebar( array(
+		'name' => __( 'Single Top Widget Area', 'initializr' ),
+		'id' => 'single-top',
+		'description' => __( 'Appears between header and content on single post pages.', 'initializr' ),
+		'before_widget' => '<li id="%1$s" class="widget-container %2$s">',
+		'after_widget' => '</li>',
+		'before_title' => '<h3 class="widget-title">',
+		'after_title' => '</h3>',
+	) );
+
+	// Top of the content area. Empty by default.
+	register_sidebar( array(
+		'name' => __( 'Single Bottom Widget Area', 'initializr' ),
+		'id' => 'single-bottom',
+		'description' => __( 'Appears below posts on single pages.', 'initializr' ),
+		'before_widget' => '<li id="%1$s" class="widget-container %2$s">',
+		'after_widget' => '</li>',
+		'before_title' => '<h3 class="widget-title">',
+		'after_title' => '</h3>',
+	) );
+
+	// Top of the content area. Empty by default.
+	register_sidebar( array(
+		'name' => __( 'Page Top Widget Area', 'initializr' ),
+		'id' => 'page-top',
+		'description' => __( 'Appears between header and content on pages.', 'initializr' ),
+		'before_widget' => '<li id="%1$s" class="widget-container %2$s">',
+		'after_widget' => '</li>',
+		'before_title' => '<h3 class="widget-title">',
+		'after_title' => '</h3>',
+	) );
+
+	// Top of the content area. Empty by default.
+	register_sidebar( array(
+		'name' => __( 'Page Bottom Widget Area', 'initializr' ),
+		'id' => 'Page-bottom',
+		'description' => __( 'Appears below posts on pages.', 'initializr' ),
+		'before_widget' => '<li id="%1$s" class="widget-container %2$s">',
+		'after_widget' => '</li>',
+		'before_title' => '<h3 class="widget-title">',
+		'after_title' => '</h3>',
+	) );
+
+	// Footer 1, located in the footer. Empty by default.
 	register_sidebar( array(
 		'name' => __( 'First Footer Widget Area', 'initializr' ),
 		'id' => 'first-footer-widget-area',
@@ -346,7 +423,7 @@ function initializr_widgets_init() {
 		'after_title' => '</h3>',
 	) );
 
-	// Area 4, located in the footer. Empty by default.
+	// Footer 2, located in the footer. Empty by default.
 	register_sidebar( array(
 		'name' => __( 'Second Footer Widget Area', 'initializr' ),
 		'id' => 'second-footer-widget-area',
@@ -357,7 +434,7 @@ function initializr_widgets_init() {
 		'after_title' => '</h3>',
 	) );
 
-	// Area 5, located in the footer. Empty by default.
+	// Footer 3, located in the footer. Empty by default.
 	register_sidebar( array(
 		'name' => __( 'Third Footer Widget Area', 'initializr' ),
 		'id' => 'third-footer-widget-area',
@@ -368,7 +445,7 @@ function initializr_widgets_init() {
 		'after_title' => '</h3>',
 	) );
 
-	// Area 6, located in the footer. Empty by default.
+	// Footer 4, located in the footer. Empty by default.
 	register_sidebar( array(
 		'name' => __( 'Fourth Footer Widget Area', 'initializr' ),
 		'id' => 'fourth-footer-widget-area',
