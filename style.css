@@ -509,7 +509,10 @@ blockquote p {
 	margin-bottom: 0.5em;
 }
 
-article.format-image, article.format-video, article.format-gallery {
+article.format-image, 
+article.format-video, 
+article.format-gallery,
+div.gallery {
 	width: 90%;
 	margin-left: auto;
 	margin-right: auto;
@@ -526,9 +529,10 @@ article.format-image, article.format-video, article.format-gallery {
                 border-radius: 10px;
 }
 
-div.gallery dl {
+dl.gallery-item {
+	text-align: center;
 	float: left;
-	overflow: hidden;
+	margin-bottom: 3em;
 }
 
 div.gallery-columns-2 dl {
@@ -549,10 +553,6 @@ div.gallery-columns-5 dl {
 
 div.gallery-columns-6 dl {
 	width: 16.5%;
-}
-
-article.format-gallery dl {
-	display: inline;
 }
 
 article.format-video::before {
