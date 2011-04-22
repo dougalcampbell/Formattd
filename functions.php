@@ -66,7 +66,7 @@ if ( ! isset( $content_width ) ) {
 }
 
 /** Tell WordPress to run initializr_setup() when the 'after_setup_theme' hook is run. */
-add_action( 'after_setup_theme', 'initializr_setup' );
+add_action( 'after_setup_theme', 'initializr_setup', 9 );
 
 add_action( 'template_redirect', 'initializr_redirect' );
 
@@ -91,6 +91,8 @@ if ( ! function_exists( 'initializr_setup' ) ):
  * @since Initializr 1.0
  */
 function initializr_setup() {
+        // Load main stylesheet
+	wp_enqueue_style('initializr', get_template_directory_uri() . '/style.css');
 
 	// This theme styles the visual editor with editor-style.css to match the theme style.
 	add_editor_style();

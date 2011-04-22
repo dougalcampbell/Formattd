@@ -320,11 +320,13 @@ aside#primary {
 	color:white;
 	background-color:#f16529;
 	margin-bottom:30px;
+	-webkit-border-radius: 10px;
+           -moz-border-radius: 10px;
+                border-radius: 10px;
 	-webkit-box-shadow:0 0px 8px 0px #AAA;
 	   -moz-box-shadow:0 0px 8px 0px #AAA;
 	        box-shadow:0 0px 8px 0px #AAA;	
 }
-
 #primary h3 {
 	font-size: 1.4em;
 }
