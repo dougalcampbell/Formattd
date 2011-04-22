@@ -57,7 +57,7 @@ $comment_number_template = _n( '1 Comments', '% Comments', get_comments_number()
 			<?php edit_post_link( __( 'Edit', 'initializr' ), '<span class="meta-sep">|</span> <span class="edit-link">', '</span>' ); ?>
 			</footer>	
 		</article>
-
+<?php 
 if ( get_the_author_meta( 'description' ) ) : // If a user has filled out their description, show a bio on their entries  ?>
 					<div id="entry-author-info">
 						<div id="author-avatar">
