@@ -305,7 +305,7 @@ function initializr_widgets_init() {
 	// Area 1, located at the top of the sidebar.
 	register_sidebar( array(
 		'name' => __( 'Primary Widget Area', 'initializr' ),
-		'id' => 'primary-widget-area',
+		'id' => 'primary-asides',
 		'description' => __( 'The primary widget area', 'initializr' ),
 		'before_widget' => '<li id="%1$s" class="widget-container %2$s">',
 		'after_widget' => '</li>',
