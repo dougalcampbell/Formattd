@@ -41,7 +41,6 @@
 	<script>DD_belatedPNG.fix('img, .png_bg');</script>
 	<![endif]-->
 <?php wp_footer(); ?>
-	<!-- script src="<?php bloginfo( 'stylesheet_directory' ); ?>/js/script.js"></script -->
 </body>
 </html>
 
