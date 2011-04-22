@@ -59,7 +59,7 @@ $comment_number_template = _n( '1 Comments', '% Comments', get_comments_number()
 // When displaying more than one post, put an interstitial widget
 // area between the first and second post:
 if ( 2 == ++$count ) {
-	dynamic_sidebar( 'index-insert' );
+	get_sidebar( 'index-insert' );
 }
 
 // use a format template

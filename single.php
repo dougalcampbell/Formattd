@@ -2,9 +2,9 @@
 <div id="content">
 <div class="spacer">
 <?php
-	dynamic_sidebar( 'single-top' );
+	get_sidebar( 'single-top' );
 	get_template_part('loop', 'single');
-	dynamic_sidebar( 'single-bottom' );
+	get_sidebar( 'single-bottom' );
 ?>
 </div><!--.spacer-->
 </div><!--#content-->

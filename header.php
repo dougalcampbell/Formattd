@@ -51,7 +51,7 @@
 <body <?php body_class(); ?>>
 	<div id="header-container">
 		<header class="wrapper">
-		<?php dynamic_sidebar('above-header'); ?>
+		<?php get_sidebar('above-header'); ?>
 		  <div id="branding">
 			  <h1 id="title"><a href="<?php echo home_url( '/' ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
 			  <div id="site-description"><?php bloginfo( 'description' ); ?></div>
