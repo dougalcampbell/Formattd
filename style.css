@@ -331,11 +331,11 @@ aside#primary {
 	font-size: 1.4em;
 }
 
-.widget-area ul {
+aside.widget-area ul {
 	margin: 5px 10px;
 }
 
-.widget-area li {
+aside.widget-area li {
 	list-style: none;
 	list-style-image: none;
 }
@@ -344,24 +344,24 @@ aside li.widget-container {
 	margin-bottom: 12px;
 }
 
-.widget-area a, #footer-container a {
+aside.widget-area a, #footer-container a {
 	color: #eee;
 	text-decoration: none;
 }
 
-.widget-area a:link, #footer-container a:link {
+aside.widget-area a:link, #footer-container a:link {
 
 }
 
-.widget-area a:visited, #footer-container a:visited {
+aside.widget-area a:visited, #footer-container a:visited {
 	color: #ccc;
 }
 
-.widget-area a:hover, #footer-container a:hover {
+aside.widget-area a:hover, #footer-container a:hover {
 	color: #fff;
 }
 
-.widget-area a:active, #footer-container a:active {
+aside.widget-area a:active, #footer-container a:active {
 
 }
 
