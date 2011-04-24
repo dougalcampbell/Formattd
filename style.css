@@ -727,7 +727,7 @@ div.page-link a {
 	display: block;
 }
 
-div#aboveheader-widgets {
+#above-header-widgets {
 	position: relative;
 	width: 250px;
 	margin: 0;
@@ -736,7 +736,7 @@ div#aboveheader-widgets {
 	z-index: 1001;
 }
 
-div#aboveheader-widgets ul.xoxo {
+#above-header-widgets ul.xoxo {
 	list-style-type: none;
 	margin: 0;
 	padding: 0;
