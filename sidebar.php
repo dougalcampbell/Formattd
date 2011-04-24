@@ -3,8 +3,8 @@
  * The Sidebar containing the widget area.
  *
  * @package WordPress
- * @subpackage Initializr
- * @since Initializr 1.0
+ * @subpackage Formattd
+ * @since Formattd 1.0
  */
 ?>
 
@@ -24,14 +24,14 @@
 			</li>
 
 			<li id="archives" class="widget-container">
-				<h3 class="widget-title"><?php _e( 'Archives', 'initializr' ); ?></h3>
+				<h3 class="widget-title"><?php _e( 'Archives', 'formattd' ); ?></h3>
 				<ul>
 					<?php wp_get_archives( 'type=monthly' ); ?>
 				</ul>
 			</li>
 
 			<li id="meta" class="widget-container">
-				<h3 class="widget-title"><?php _e( 'Meta', 'initializr' ); ?></h3>
+				<h3 class="widget-title"><?php _e( 'Meta', 'formattd' ); ?></h3>
 				<ul>
 					<?php wp_register(); ?>
 					<li><?php wp_loginout(); ?></li>

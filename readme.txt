@@ -1,5 +1,5 @@
-Initializr Theme
-================
+Formattd Theme
+==============
 
 Goals/Features:
 ---------------
@@ -34,7 +34,6 @@ Single, Page, and Archive templates
 * More HTML5 semantics
 * Other tweaks as I think of them...
 
-I'm also not stuck on the name 'Initializr'. I just called that initially because I started with markup from Initializr.com.
 
 Feature Details:
 ----------------

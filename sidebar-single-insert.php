@@ -3,8 +3,8 @@
  * The widget area between the content and comments on a single post page.
  *
  * @package WordPress
- * @subpackage Initializr
- * @since Initializr 1.0
+ * @subpackage Formattd
+ * @since Formattd 1.0
  */
 ?>
 <?php

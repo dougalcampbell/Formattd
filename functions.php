@@ -1,12 +1,12 @@
 <?php
 /**
- * Initializr functions and definitions
+ * Formattd functions and definitions
  *
  * Sets up the theme and provides some helper functions. Some helper functions
  * are used in the theme as custom template tags. Others are attached to action and
  * filter hooks in WordPress to change core functionality.
  *
- * The first function, initializr_setup(), sets up the theme by registering support
+ * The first function, formattd_setup(), sets up the theme by registering support
  * for various features in WordPress, such as post thumbnails, navigation menus, and the like.
  *
  * When using a child theme (see http://codex.wordpress.org/Theme_Development and
@@ -26,7 +26,7 @@
  * add_action( 'after_setup_theme', 'my_child_theme_setup' );
  * function my_child_theme_setup() {
  *     // We are providing our own filter for excerpt_length (or using the unfiltered value)
- *     remove_filter( 'excerpt_length', 'initializr_excerpt_length' );
+ *     remove_filter( 'excerpt_length', 'formattd_excerpt_length' );
  *     ...
  * }
  * </code>
@@ -34,8 +34,8 @@
  * For more information on hooks, actions, and filters, see http://codex.wordpress.org/Plugin_API.
  *
  * @package WordPress
- * @subpackage Initializr
- * @since Initializr 1.0
+ * @subpackage Formattd
+ * @since Formattd 1.0
  */
 
 /**
@@ -65,12 +65,12 @@ if ( ! isset( $content_width ) ) {
         }
 }
 
-/** Tell WordPress to run initializr_setup() when the 'after_setup_theme' hook is run. */
-add_action( 'after_setup_theme', 'initializr_setup', 9 );
+/** Tell WordPress to run formattd_setup() when the 'after_setup_theme' hook is run. */
+add_action( 'after_setup_theme', 'formattd_setup', 9 );
 
-add_action( 'template_redirect', 'initializr_redirect' );
+add_action( 'template_redirect', 'formattd_redirect' );
 
-if ( ! function_exists( 'initializr_setup' ) ):
+if ( ! function_exists( 'formattd_setup' ) ):
 /**
  * Sets up theme defaults and registers support for various WordPress features.
  *
@@ -78,7 +78,7 @@ if ( ! function_exists( 'initializr_setup' ) ):
  * before the init hook. The init hook is too late for some features, such as indicating
  * support post thumbnails.
  *
- * To override initializr_setup() in a child theme, add your own initializr_setup to your child theme's
+ * To override formattd_setup() in a child theme, add your own formattd_setup to your child theme's
  * functions.php file.
  *
  * @uses add_theme_support() To add support for post thumbnails and automatic feed links.
@@ -88,12 +88,12 @@ if ( ! function_exists( 'initializr_setup' ) ):
  * @uses load_theme_textdomain() For translation/localization support.
  * @uses set_post_thumbnail_size() To set a custom post thumbnail size.
  *
- * @since Initializr 1.0
+ * @since Formattd 1.0
  */
-function initializr_setup() {
+function formattd_setup() {
         // Load main stylesheet
         if (! is_admin() ) {
-	  wp_enqueue_style('initializr', get_template_directory_uri() . '/style.css', array(), '0.0.10');
+	  wp_enqueue_style('formattd', get_template_directory_uri() . '/style.css', array(), '0.0.10');
 	}
 	// This theme styles the visual editor with editor-style.css to match the theme style.
 	add_editor_style();
@@ -126,7 +126,7 @@ function initializr_setup() {
 	
   	// Make theme available for translation
 	// Translations can be filed in the /languages/ directory
-	load_theme_textdomain( 'initializr', TEMPLATEPATH . '/languages' );
+	load_theme_textdomain( 'formattd', TEMPLATEPATH . '/languages' );
 
 	$locale = get_locale();
 	$locale_file = TEMPLATEPATH . "/languages/$locale.php";
@@ -135,7 +135,7 @@ function initializr_setup() {
 
 	// This theme uses wp_nav_menu() in one location.
 	register_nav_menus( array(
-		'primary' => __( 'Primary Navigation', 'initializr' ),
+		'primary' => __( 'Primary Navigation', 'formattd' ),
 	) );
 
 	// Add official.fm as an oembed provider:
@@ -147,8 +147,8 @@ function initializr_setup() {
 endif;
 
 // Add X-UA-Compatible header in HTTP, not in HTML
-if ( ! function_exists( 'initializr_redirect' ) ) :
-function initializr_redirect() {
+if ( ! function_exists( 'formattd_redirect' ) ) :
+function formattd_redirect() {
 	// Send as an HTTP header instead using meta http-equiv.
 	// See: http://lists.w3.org/Archives/Public/www-validator/2010Nov/0050.html
 	@header( 'X-UA-Compatible: IE=edge,chrome=1' );
@@ -161,15 +161,15 @@ endif;
  * To override this in a child theme, remove the filter and optionally add
  * your own function tied to the wp_page_menu_args filter hook.
  *
- * @since Initializr 1.0
+ * @since Formattd 1.0
  */
-if (! function_exists('initializr_page_menu_args') ) {
-function initializr_page_menu_args( $args ) {
+if (! function_exists('formattd_page_menu_args') ) {
+function formattd_page_menu_args( $args ) {
 	$args['show_home'] = true;
 	return $args;
 }
 }
-add_filter( 'wp_page_menu_args', 'initializr_page_menu_args' );
+add_filter( 'wp_page_menu_args', 'formattd_page_menu_args' );
 
 /**
  * Sets the post excerpt length to 75 words.
@@ -177,39 +177,39 @@ add_filter( 'wp_page_menu_args', 'initializr_page_menu_args' );
  * To override this length in a child theme, remove the filter and add your
  * own function tied to the excerpt_length filter hook.
  *
- * @since Initializr 1.0
+ * @since Formattd 1.0
  * @return int
  */
-function initializr_excerpt_length( $length ) {
+function formattd_excerpt_length( $length ) {
 	return 75;
 }
-add_filter( 'excerpt_length', 'initializr_excerpt_length' );
+add_filter( 'excerpt_length', 'formattd_excerpt_length' );
 
 /**
  * Returns a "Continue Reading" link for excerpts
  *
- * @since Initializr 1.0
+ * @since Formattd 1.0
  * @return string "Continue Reading" link
  */
-if (! function_exists('initializr_continue_reading_link') ) {
-function initializr_continue_reading_link() {
-	return ' <a href="'. get_permalink() . '">' . __( 'Continue reading <span class="meta-nav">&rarr;</span>', 'initializr' ) . '</a>';
+if (! function_exists('formattd_continue_reading_link') ) {
+function formattd_continue_reading_link() {
+	return ' <a href="'. get_permalink() . '">' . __( 'Continue reading <span class="meta-nav">&rarr;</span>', 'formattd' ) . '</a>';
 }
 }
 
 /**
- * Replaces "[...]" (appended to automatically generated excerpts) with an ellipsis and initializr_continue_reading_link().
+ * Replaces "[...]" (appended to automatically generated excerpts) with an ellipsis and formattd_continue_reading_link().
  *
  * To override this in a child theme, remove the filter and add your own
  * function tied to the excerpt_more filter hook.
  *
- * @since Initializr 1.0
+ * @since Formattd 1.0
  * @return string An ellipsis
  */
-function initializr_auto_excerpt_more( $more ) {
-	return ' &hellip;' . initializr_continue_reading_link();
+function formattd_auto_excerpt_more( $more ) {
+	return ' &hellip;' . formattd_continue_reading_link();
 }
-add_filter( 'excerpt_more', 'initializr_auto_excerpt_more' );
+add_filter( 'excerpt_more', 'formattd_auto_excerpt_more' );
 
 /**
  * Adds a pretty "Continue Reading" link to custom post excerpts.
@@ -217,39 +217,39 @@ add_filter( 'excerpt_more', 'initializr_auto_excerpt_more' );
  * To override this link in a child theme, remove the filter and add your own
  * function tied to the get_the_excerpt filter hook.
  *
- * @since Initializr 1.0
+ * @since Formattd 1.0
  * @return string Excerpt with a pretty "Continue Reading" link
  */
-function initializr_custom_excerpt_more( $output ) {
+function formattd_custom_excerpt_more( $output ) {
 	if ( has_excerpt() && ! is_attachment() ) {
-		$output .= initializr_continue_reading_link();
+		$output .= formattd_continue_reading_link();
 	}
 	return $output;
 }
-add_filter( 'get_the_excerpt', 'initializr_custom_excerpt_more' );
+add_filter( 'get_the_excerpt', 'formattd_custom_excerpt_more' );
 
 /**
  * Remove inline styles printed when the gallery shortcode is used.
  *
- * Galleries are styled by the theme in Initializr's style.css. This is just
+ * Galleries are styled by the theme in Formattd's style.css. This is just
  * a simple filter call that tells WordPress to not use the default styles.
  *
- * @since Initializr 1.2
+ * @since Formattd 1.2
  */
 add_filter( 'use_default_gallery_style', '__return_false' );
 
-if ( ! function_exists( 'initializr_comment' ) ) :
+if ( ! function_exists( 'formattd_comment' ) ) :
 /**
  * Template for comments and pingbacks.
  *
  * To override this walker in a child theme without modifying the comments template
- * simply create your own initializr_comment(), and that function will be used instead.
+ * simply create your own formattd_comment(), and that function will be used instead.
  *
  * Used as a callback by wp_list_comments() for displaying the comments.
  *
- * @since Initializr 1.0
+ * @since Formattd 1.0
  */
-function initializr_comment( $comment, $args, $depth ) {
+function formattd_comment( $comment, $args, $depth ) {
 	$GLOBALS['comment'] = $comment;
 	$GLOBALS['depth'] = $depth;
 	switch ( $comment->comment_type ) :
@@ -259,17 +259,17 @@ function initializr_comment( $comment, $args, $depth ) {
 		<div id="comment-<?php comment_ID(); ?>">
 		<div class="comment-author vcard">
 			<?php echo get_avatar( $comment, 40 ); ?>
-			<?php printf( __( '%s <span class="says">says:</span>', 'initializr' ), sprintf( '<cite class="fn">%s</cite>', get_comment_author_link() ) ); ?>
+			<?php printf( __( '%s <span class="says">says:</span>', 'formattd' ), sprintf( '<cite class="fn">%s</cite>', get_comment_author_link() ) ); ?>
 		</div><!-- .comment-author .vcard -->
 		<?php if ( $comment->comment_approved == '0' ) : ?>
-			<em class="comment-awaiting-moderation"><?php _e( 'Your comment is awaiting moderation.', 'initializr' ); ?></em>
+			<em class="comment-awaiting-moderation"><?php _e( 'Your comment is awaiting moderation.', 'formattd' ); ?></em>
 			<br />
 		<?php endif; ?>
 
 		<div class="comment-meta commentmetadata"><a href="<?php echo esc_url( get_comment_link( $comment->comment_ID ) ); ?>">
 			<?php
 				/* translators: 1: date, 2: time */
-				printf( __( '%1$s at %2$s', 'initializr' ), get_comment_date(),  get_comment_time() ); ?></a><?php edit_comment_link( __( '(Edit)', 'initializr' ), ' ' );
+				printf( __( '%1$s at %2$s', 'formattd' ), get_comment_date(),  get_comment_time() ); ?></a><?php edit_comment_link( __( '(Edit)', 'formattd' ), ' ' );
 			?>
 		</div><!-- .comment-meta .commentmetadata -->
 
@@ -286,7 +286,7 @@ function initializr_comment( $comment, $args, $depth ) {
 		case 'trackback' :
 	?>
 	<li class="post pingback">
-		<p><?php _e( 'Pingback:', 'initializr' ); ?> <?php comment_author_link(); ?><?php edit_comment_link( __( '(Edit)', 'initializr' ), ' ' ); ?></p>
+		<p><?php _e( 'Pingback:', 'formattd' ); ?> <?php comment_author_link(); ?><?php edit_comment_link( __( '(Edit)', 'formattd' ), ' ' ); ?></p>
 	<?php
 			break;
 	endswitch;
@@ -296,18 +296,18 @@ endif;
 /**
  * Register widgetized areas, including two sidebars and four widget-ready columns in the footer.
  *
- * To override initializr_widgets_init() in a child theme, remove the action hook and add your own
+ * To override formattd_widgets_init() in a child theme, remove the action hook and add your own
  * function tied to the init hook.
  *
- * @since Initializr 1.0
+ * @since Formattd 1.0
  * @uses register_sidebar
  */
-function initializr_widgets_init() {
+function formattd_widgets_init() {
 	// Header widget area
 	register_sidebar( array(
-		'name' => __( 'Above Header Widget Area', 'initializr' ),
+		'name' => __( 'Above Header Widget Area', 'formattd' ),
 		'id' => 'above-header',
-		'description' => __( 'In the header, before site name', 'initializr' ),
+		'description' => __( 'In the header, before site name', 'formattd' ),
 		'before_widget' => '<li id="%1$s" class="widget-container %2$s">',
 		'after_widget' => '</li>',
 		'before_title' => '<h3 class="widget-title">',
@@ -316,9 +316,9 @@ function initializr_widgets_init() {
 
 	// Primary sidebar, located at the top of the sidebar.
 	register_sidebar( array(
-		'name' => __( 'Primary Widget Area', 'initializr' ),
+		'name' => __( 'Primary Widget Area', 'formattd' ),
 		'id' => 'primary-aside',
-		'description' => __( 'The primary widget area', 'initializr' ),
+		'description' => __( 'The primary widget area', 'formattd' ),
 		'before_widget' => '<li id="%1$s" class="widget-container %2$s">',
 		'after_widget' => '</li>',
 		'before_title' => '<h3 class="widget-title">',
@@ -327,9 +327,9 @@ function initializr_widgets_init() {
 
 	// Secondary sidebar, located below the Primary Widget Area in the sidebar. Empty by default.
 	register_sidebar( array(
-		'name' => __( 'Secondary Widget Area', 'initializr' ),
+		'name' => __( 'Secondary Widget Area', 'formattd' ),
 		'id' => 'secondary-aside',
-		'description' => __( 'The secondary widget area', 'initializr' ),
+		'description' => __( 'The secondary widget area', 'formattd' ),
 		'before_widget' => '<li id="%1$s" class="widget-container %2$s">',
 		'after_widget' => '</li>',
 		'before_title' => '<h3 class="widget-title">',
@@ -338,9 +338,9 @@ function initializr_widgets_init() {
 
 	// Top of the content area. Empty by default.
 	register_sidebar( array(
-		'name' => __( 'Index Top Widget Area', 'initializr' ),
+		'name' => __( 'Index Top Widget Area', 'formattd' ),
 		'id' => 'index-top',
-		'description' => __( 'Appears between header and content on index and single post pages.', 'initializr' ),
+		'description' => __( 'Appears between header and content on index and single post pages.', 'formattd' ),
 		'before_widget' => '<li id="%1$s" class="widget-container %2$s">',
 		'after_widget' => '</li>',
 		'before_title' => '<h3 class="widget-title">',
@@ -349,9 +349,9 @@ function initializr_widgets_init() {
 
 	// Top of the content area. Empty by default.
 	register_sidebar( array(
-		'name' => __( 'Index Insert Widget Area', 'initializr' ),
+		'name' => __( 'Index Insert Widget Area', 'formattd' ),
 		'id' => 'index-insert',
-		'description' => __( 'Appears between 1st and 2nd post on index page.', 'initializr' ),
+		'description' => __( 'Appears between 1st and 2nd post on index page.', 'formattd' ),
 		'before_widget' => '<li id="%1$s" class="widget-container %2$s">',
 		'after_widget' => '</li>',
 		'before_title' => '<h3 class="widget-title">',
@@ -360,9 +360,9 @@ function initializr_widgets_init() {
 
 	// Top of the content area. Empty by default.
 	register_sidebar( array(
-		'name' => __( 'Index Bottom Widget Area', 'initializr' ),
+		'name' => __( 'Index Bottom Widget Area', 'formattd' ),
 		'id' => 'index-bottom',
-		'description' => __( 'Appears below posts on index page.', 'initializr' ),
+		'description' => __( 'Appears below posts on index page.', 'formattd' ),
 		'before_widget' => '<li id="%1$s" class="widget-container %2$s">',
 		'after_widget' => '</li>',
 		'before_title' => '<h3 class="widget-title">',
@@ -371,9 +371,9 @@ function initializr_widgets_init() {
 
 	// Top of the content area. Empty by default.
 	register_sidebar( array(
-		'name' => __( 'Single Top Widget Area', 'initializr' ),
+		'name' => __( 'Single Top Widget Area', 'formattd' ),
 		'id' => 'single-top',
-		'description' => __( 'Appears between header and content on single post pages.', 'initializr' ),
+		'description' => __( 'Appears between header and content on single post pages.', 'formattd' ),
 		'before_widget' => '<li id="%1$s" class="widget-container %2$s">',
 		'after_widget' => '</li>',
 		'before_title' => '<h3 class="widget-title">',
@@ -382,9 +382,9 @@ function initializr_widgets_init() {
 
 	// Top of the content area. Empty by default.
 	register_sidebar( array(
-		'name' => __( 'Single Bottom Widget Area', 'initializr' ),
+		'name' => __( 'Single Bottom Widget Area', 'formattd' ),
 		'id' => 'single-bottom',
-		'description' => __( 'Appears below posts on single pages.', 'initializr' ),
+		'description' => __( 'Appears below posts on single pages.', 'formattd' ),
 		'before_widget' => '<li id="%1$s" class="widget-container %2$s">',
 		'after_widget' => '</li>',
 		'before_title' => '<h3 class="widget-title">',
@@ -393,9 +393,9 @@ function initializr_widgets_init() {
 
 	// Top of the content area. Empty by default.
 	register_sidebar( array(
-		'name' => __( 'Page Top Widget Area', 'initializr' ),
+		'name' => __( 'Page Top Widget Area', 'formattd' ),
 		'id' => 'page-top',
-		'description' => __( 'Appears between header and content on pages.', 'initializr' ),
+		'description' => __( 'Appears between header and content on pages.', 'formattd' ),
 		'before_widget' => '<li id="%1$s" class="widget-container %2$s">',
 		'after_widget' => '</li>',
 		'before_title' => '<h3 class="widget-title">',
@@ -404,9 +404,9 @@ function initializr_widgets_init() {
 
 	// Top of the content area. Empty by default.
 	register_sidebar( array(
-		'name' => __( 'Page Bottom Widget Area', 'initializr' ),
+		'name' => __( 'Page Bottom Widget Area', 'formattd' ),
 		'id' => 'Page-bottom',
-		'description' => __( 'Appears below posts on pages.', 'initializr' ),
+		'description' => __( 'Appears below posts on pages.', 'formattd' ),
 		'before_widget' => '<li id="%1$s" class="widget-container %2$s">',
 		'after_widget' => '</li>',
 		'before_title' => '<h3 class="widget-title">',
@@ -415,9 +415,9 @@ function initializr_widgets_init() {
 
 	// Footer 1, located in the footer. Empty by default.
 	register_sidebar( array(
-		'name' => __( 'First Footer Widget Area', 'initializr' ),
+		'name' => __( 'First Footer Widget Area', 'formattd' ),
 		'id' => 'first-footer-widget-area',
-		'description' => __( 'The first footer widget area', 'initializr' ),
+		'description' => __( 'The first footer widget area', 'formattd' ),
 		'before_widget' => '<li id="%1$s" class="widget-container %2$s">',
 		'after_widget' => '</li>',
 		'before_title' => '<h3 class="widget-title">',
@@ -426,9 +426,9 @@ function initializr_widgets_init() {
 
 	// Footer 2, located in the footer. Empty by default.
 	register_sidebar( array(
-		'name' => __( 'Second Footer Widget Area', 'initializr' ),
+		'name' => __( 'Second Footer Widget Area', 'formattd' ),
 		'id' => 'second-footer-widget-area',
-		'description' => __( 'The second footer widget area', 'initializr' ),
+		'description' => __( 'The second footer widget area', 'formattd' ),
 		'before_widget' => '<li id="%1$s" class="widget-container %2$s">',
 		'after_widget' => '</li>',
 		'before_title' => '<h3 class="widget-title">',
@@ -437,9 +437,9 @@ function initializr_widgets_init() {
 
 	// Footer 3, located in the footer. Empty by default.
 	register_sidebar( array(
-		'name' => __( 'Third Footer Widget Area', 'initializr' ),
+		'name' => __( 'Third Footer Widget Area', 'formattd' ),
 		'id' => 'third-footer-widget-area',
-		'description' => __( 'The third footer widget area', 'initializr' ),
+		'description' => __( 'The third footer widget area', 'formattd' ),
 		'before_widget' => '<li id="%1$s" class="widget-container %2$s">',
 		'after_widget' => '</li>',
 		'before_title' => '<h3 class="widget-title">',
@@ -448,17 +448,17 @@ function initializr_widgets_init() {
 
 	// Footer 4, located in the footer. Empty by default.
 	register_sidebar( array(
-		'name' => __( 'Fourth Footer Widget Area', 'initializr' ),
+		'name' => __( 'Fourth Footer Widget Area', 'formattd' ),
 		'id' => 'fourth-footer-widget-area',
-		'description' => __( 'The fourth footer widget area', 'initializr' ),
+		'description' => __( 'The fourth footer widget area', 'formattd' ),
 		'before_widget' => '<li id="%1$s" class="widget-container %2$s">',
 		'after_widget' => '</li>',
 		'before_title' => '<h3 class="widget-title">',
 		'after_title' => '</h3>',
 	) );
 }
-/** Register sidebars by running initializr_widgets_init() on the widgets_init hook. */
-add_action( 'widgets_init', 'initializr_widgets_init' );
+/** Register sidebars by running formattd_widgets_init() on the widgets_init hook. */
+add_action( 'widgets_init', 'formattd_widgets_init' );
 
 /**
  * Removes the default styles that are packaged with the Recent Comments widget.
@@ -467,25 +467,25 @@ add_action( 'widgets_init', 'initializr_widgets_init' );
  * your own function tied to the widgets_init action hook.
  *
  * This function uses a filter (show_recent_comments_widget_style) new in
- * WordPress 3.1 to remove the default style.  Using Initializr 1.2 in
+ * WordPress 3.1 to remove the default style.  Using Formattd 1.2 in
  * WordPress 3.0 will show the styles, but they won't have any effect on the
- * widget in default Initializr styling.
+ * widget in default Formattd styling.
  *
- * @since Initializr 1.0
+ * @since Formattd 1.0
  */
-function initializr_remove_recent_comments_style() {
+function formattd_remove_recent_comments_style() {
 	add_filter( 'show_recent_comments_widget_style', '__return_false' );
 }
-add_action( 'widgets_init', 'initializr_remove_recent_comments_style' );
+add_action( 'widgets_init', 'formattd_remove_recent_comments_style' );
 
-if ( ! function_exists( 'initializr_posted_on' ) ) :
+if ( ! function_exists( 'formattd_posted_on' ) ) :
 /**
  * Prints HTML with meta information for the current post-date/time and author.
  *
- * @since Initializr 1.0
+ * @since Formattd 1.0
  */
-function initializr_posted_on() {
-	printf( __( '<span class="%1$s">Posted on</span> %2$s <span class="meta-sep">by</span> %3$s', 'initializr' ),
+function formattd_posted_on() {
+	printf( __( '<span class="%1$s">Posted on</span> %2$s <span class="meta-sep">by</span> %3$s', 'formattd' ),
 		'meta-prep meta-prep-author',
 		sprintf( '<a href="%1$s" title="%2$s" rel="bookmark"><span class="entry-date">%3$s</span></a>',
 			get_permalink(),
@@ -494,28 +494,28 @@ function initializr_posted_on() {
 		),
 		sprintf( '<span class="author vcard"><a class="url fn n" href="%1$s" title="%2$s">%3$s</a></span>',
 			get_author_posts_url( get_the_author_meta( 'ID' ) ),
-			sprintf( esc_attr__( 'View all posts by %s', 'initializr' ), get_the_author() ),
+			sprintf( esc_attr__( 'View all posts by %s', 'formattd' ), get_the_author() ),
 			get_the_author()
 		)
 	);
 }
 endif;
 
-if ( ! function_exists( 'initializr_posted_in' ) ) :
+if ( ! function_exists( 'formattd_posted_in' ) ) :
 /**
  * Prints HTML with meta information for the current post (category, tags and permalink).
  *
- * @since Initializr 1.0
+ * @since Formattd 1.0
  */
-function initializr_posted_in() {
+function formattd_posted_in() {
 	// Retrieves tag list of current post, separated by commas.
 	$tag_list = get_the_tag_list( '', ', ' );
 	if ( $tag_list ) {
-		$posted_in = __( 'This entry was posted in %1$s and tagged %2$s. Bookmark the <a href="%3$s" title="Permalink to %4$s" rel="bookmark">permalink</a>.', 'initializr' );
+		$posted_in = __( 'This entry was posted in %1$s and tagged %2$s. Bookmark the <a href="%3$s" title="Permalink to %4$s" rel="bookmark">permalink</a>.', 'formattd' );
 	} elseif ( is_object_in_taxonomy( get_post_type(), 'category' ) ) {
-		$posted_in = __( 'This entry was posted in %1$s. Bookmark the <a href="%3$s" title="Permalink to %4$s" rel="bookmark">permalink</a>.', 'initializr' );
+		$posted_in = __( 'This entry was posted in %1$s. Bookmark the <a href="%3$s" title="Permalink to %4$s" rel="bookmark">permalink</a>.', 'formattd' );
 	} else {
-		$posted_in = __( 'Bookmark the <a href="%3$s" title="Permalink to %4$s" rel="bookmark">permalink</a>.', 'initializr' );
+		$posted_in = __( 'Bookmark the <a href="%3$s" title="Permalink to %4$s" rel="bookmark">permalink</a>.', 'formattd' );
 	}
 	// Prints the string, replacing the placeholders.
 	printf(
@@ -528,8 +528,8 @@ function initializr_posted_in() {
 }
 endif;
 
-if ( ! function_exists( 'initializr_post_date' ) ) :
-function initializr_post_date() {
+if ( ! function_exists( 'formattd_post_date' ) ) :
+function formattd_post_date() {
 	$mon = get_the_time('M');
 	$day = get_the_time('d');
 	$year = get_the_time('Y');
