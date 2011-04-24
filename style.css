@@ -136,13 +136,13 @@ p,ul,ol,blockquote {
 	position: relative;
 	padding: 0 0 1em 0;
 	overflow: hidden;
-	width: 71%;
-	left: 27%;
+	width: 66%;
+	left: 24%;
 }
 
 #primary {
-	width: 21%;
-	left: 31%;
+	width: 33%;
+	left: 24%;
 	float: left;
 	position: relative;
 	overflow: hidden;
