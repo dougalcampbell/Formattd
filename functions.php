@@ -92,8 +92,9 @@ if ( ! function_exists( 'initializr_setup' ) ):
  */
 function initializr_setup() {
         // Load main stylesheet
-	wp_enqueue_style('initializr', get_template_directory_uri() . '/style.css', array(), '0.0.7');
-
+        if (! is_admin ) {
+	  wp_enqueue_style('initializr', get_template_directory_uri() . '/style.css', array(), '0.0.7');
+	}
 	// This theme styles the visual editor with editor-style.css to match the theme style.
 	add_editor_style();
 
