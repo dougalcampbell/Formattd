@@ -335,7 +335,7 @@ aside.widget-area ul {
 	margin: 5px 10px;
 }
 
-aside.widget-area li {
+.widget-area li {
 	list-style: none;
 	list-style-image: none;
 }
@@ -344,24 +344,24 @@ aside li.widget-container {
 	margin-bottom: 12px;
 }
 
-aside.widget-area a, #footer-container a {
+.widget-area a, #footer-container a {
 	color: #eee;
 	text-decoration: none;
 }
 
-aside.widget-area a:link, #footer-container a:link {
+.widget-area a:link, #footer-container a:link {
 
 }
 
-aside.widget-area a:visited, #footer-container a:visited {
+.widget-area a:visited, #footer-container a:visited {
 	color: #ccc;
 }
 
-aside.widget-area a:hover, #footer-container a:hover {
+.widget-area a:hover, #footer-container a:hover {
 	color: #fff;
 }
 
-aside.widget-area a:active, #footer-container a:active {
+.widget-area a:active, #footer-container a:active {
 
 }
 
