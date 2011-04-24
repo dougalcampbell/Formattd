@@ -220,8 +220,8 @@ h3{
 /* Main nav */
 
 #header-container nav{
-	float: left;
-	margin-top:95px;
+	position: absolute;
+	bottom: 20px;
 }
 
 #header-container nav ul, #header-container nav ul li{
@@ -280,7 +280,7 @@ h3{
 	width: 220px; 
 	visibility: hidden; 
 	position: absolute; 
-	top: 20px; left: -5px; 
+	top: 35px; left: -5px; 
 }
 
 #header-container nav ul ul li { 
