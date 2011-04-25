@@ -529,6 +529,10 @@ div.gallery {
                 border-radius: 10px;
 }
 
+#content article img {
+	max-width: 90%; 
+}
+
 dl.gallery-item {
 	text-align: center;
 	float: left;
