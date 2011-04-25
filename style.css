@@ -147,6 +147,8 @@ p,ul,ol,blockquote {
 	position: relative;
 	overflow: hidden;
 	padding: 0 0 1em 0;
+	max-width: 300px;
+	min-width: 150px;
 }
 
 div.spacer {
