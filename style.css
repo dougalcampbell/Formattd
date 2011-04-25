@@ -637,6 +637,7 @@ article.format-audio::before {
 div.featured-image {
 	display: inline;
 	float: right;
+	margin: 0 0 0.5em 1em;
 }
 
 div.featured-image img{
