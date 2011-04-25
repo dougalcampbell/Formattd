@@ -142,7 +142,7 @@ function formattd_setup() {
 	wp_oembed_add_provider('http://official.fm/*', 'http://official.fm/services/oembed/');
 
 	// Dropdown menus
-        wp_enqueue_script('dropdown', trailingslashit( get_template_directory_uri() ) . 'js/jquery.dropdownPlain.js', array('jquery'), '1.0');
+        wp_enqueue_script('dropdown', trailingslashit( get_stylesheet_directory_uri() ) . 'js/jquery.dropdownPlain.js', array('jquery'), '1.0');
 }
 endif;
 
@@ -163,13 +163,12 @@ endif;
  *
  * @since Formattd 1.0
  */
-if (! function_exists('formattd_page_menu_args') ) :
+if (! function_exists('formattd_page_menu_args') ) {
 function formattd_page_menu_args( $args ) {
 	$args['show_home'] = true;
 	return $args;
 }
-endif;
-
+}
 add_filter( 'wp_page_menu_args', 'formattd_page_menu_args' );
 
 /**
@@ -192,11 +191,11 @@ add_filter( 'excerpt_length', 'formattd_excerpt_length' );
  * @since Formattd 1.0
  * @return string "Continue Reading" link
  */
-if (! function_exists('formattd_continue_reading_link') ) :
+if (! function_exists('formattd_continue_reading_link') ) {
 function formattd_continue_reading_link() {
 	return ' <a href="'. get_permalink() . '">' . __( 'Continue reading <span class="meta-nav">&rarr;</span>', 'formattd' ) . '</a>';
 }
-endif;
+}
 
 /**
  * Replaces "[...]" (appended to automatically generated excerpts) with an ellipsis and formattd_continue_reading_link().
@@ -611,7 +610,7 @@ function auto_post_format_detect( $data, $postarr ) {
     /* Look for an image at the beginning of a post. Optionally preceded
      * by <br> or <p> tags. Optionally linked with an <a> tag.
      */
-	if ( preg_match('%^(((<p[^>]*?>)?)((<br ?/?>)*?))*?(<a\s+[^>]+>)?<img\s+[^>]+>%', $post->post_content) ) {
+		if ( preg_match('%^(((<p[^>]*?>)?)((<br ?/?>)*?))*?(<a\s+[^>]+>)?<img\s+[^>]+>%', $post->post_content) ) {
 		  $dc_auto_post_format = 'image';
     }
     
@@ -652,7 +651,7 @@ function auto_post_format_detect( $data, $postarr ) {
       add_action( 'wp_insert_post', 'auto_post_format_set', 10, 2 );
     }
   }
-
+  
   return $data;
 }
 
@@ -660,7 +659,7 @@ function auto_post_format_set( $postid, $post ) {
   global $dc_auto_post_format;
   // Validate format
   $dc_auto_post_format = sanitize_key($dc_auto_post_format);
-
+  
   if ( !array_key_exists( $dc_auto_post_format, get_post_format_strings() ) ) {
     // not a valid post format. do nothing.
     return;
