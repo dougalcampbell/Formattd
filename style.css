@@ -747,6 +747,10 @@ div.page-link a {
 	padding: 0;
 }
 
+article.format-image .sharing a:hover,
+article.format-video .sharing a:hover {
+	color: black;
+}
 
 
 .align-right { float: right; };
