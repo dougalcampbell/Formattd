@@ -789,6 +789,19 @@ article.format-video .sharing a:hover {
   div#content { width: 90%; left; 5%; }
   img { max-width: 225px !important; }
   object { max-width: 225px !important; }
+  #above-header { display: none; }
+  #title h1 { font-size: 2.0em; }
+  #site-description { font-size: 0.75em; }
+  #header-container nav { bottom: 4px; }
+  #header-container nav a { padding: 4px 4px; height: 85px; }
+  #index-top: display: none;
+  #content-wrap { right: 0; }
+  #content { left: 0; width: 100%; }
+  #spacer { margin-left: 40px; margin-right: 10px;}
+  article.format-link::before { left: -36px; }
+  article.format-status::before { left: -36px; }
+  article.format-audio::before { left: -36px; }
+  article.format-video::before { left: -36px; }
 }
 
 

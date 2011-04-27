@@ -93,7 +93,7 @@ if ( ! function_exists( 'formattd_setup' ) ):
 function formattd_setup() {
         // Load main stylesheet
         if (! is_admin() ) {
-	  wp_enqueue_style('formattd', get_template_directory_uri() . '/style.css', array(), '0.0.11');
+	  wp_enqueue_style('formattd', get_template_directory_uri() . '/style.css', array(), '0.0.12');
 	}
 	// This theme styles the visual editor with editor-style.css to match the theme style.
 	add_editor_style();
