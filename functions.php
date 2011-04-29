@@ -96,7 +96,7 @@ if ( ! function_exists( 'formattd_setup' ) ):
  * @since Formattd 0.1
  */
 function formattd_setup() {
-        global $is_ios, $is_iphone, $is_ipad, $is_ipod;
+        global $is_ios, $is_iphone, $is_ipad, $is_ipod, $formattd_css_version;
         // Load main stylesheet
         if (! is_admin() ) {
 	  wp_enqueue_style( 'formattd', get_template_directory_uri() . '/style.css', array(), $formattd_css_version );
