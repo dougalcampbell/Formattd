@@ -50,7 +50,7 @@ if ( $is_iphone && stripos($_SERVER['HTTP_USER_AGENT'], 'ipad') !== false ) {
 if ( $is_iphone || $is_ipad )
   $is_ios = true;
 
-
+$formattd_css_version = '0.0.13';
 
 /**
  * Set the content width based on the theme's design and stylesheet.
@@ -60,8 +60,8 @@ if ( $is_iphone || $is_ipad )
  */
 if ( ! isset( $content_width ) ) {
 	$content_width = 480;
-        if ( $is_ipad ) {
-          $content_width = 380; // for ipad portrait orientation
+        if ( $is_ios ) {
+          $content_width = 320; // for ios portrait orientation
         }
 }
 
@@ -93,8 +93,8 @@ if ( ! function_exists( 'formattd_setup' ) ):
 function formattd_setup() {
         // Load main stylesheet
         if (! is_admin() ) {
-	  wp_enqueue_style('formattd', get_template_directory_uri() . '/style.css', array(), '0.0.12');
-	}
+	  wp_enqueue_style('formattd', get_template_directory_uri() . '/style.css', array(), '0.0.13');
+  	}
 	// This theme styles the visual editor with editor-style.css to match the theme style.
 	add_editor_style();
 
@@ -109,7 +109,11 @@ function formattd_setup() {
 
 	// Auto-add a float-right thumbnail featured image, when set
         if (function_exists('set_post_thumbnail_size')) {
-        	set_post_thumbnail_size( 240, 240, true );
+                if ($is_ios) {
+                  set_post_thumbnail_size( 120, 120, true );
+                } else {
+        	  set_post_thumbnail_size( 240, 240, true );
+                }
 	}
 	
 	if (function_exists('add_image_size')) {
