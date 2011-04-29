@@ -19,11 +19,14 @@ Inspiration:
 * Matthew James Taylor's "Perfect 'Right-Menu' 2-Column Liquid Layout"
 * TwentyTen theme
 
-This theme comes from my desire to step back from "theme frameworks", and create a simple, single-purpose blog theme. There are no fancy configuration options. It doesn't have layers upon layers of abstraction. It doesn't try to do everything under the sun. It's just a simple blog theme.
+This theme comes from my desire to step back from "theme frameworks", and
+create a simple, single-purpose blog theme.  There are no fancy
+configuration options.  It doesn't have layers upon layers of abstraction. 
+It doesn't try to do everything under the sun.  It's just a simple blog
+theme.
 
 It's currently very much a work-in-progress. To Do:
-Single, Page, and Archive templates
-
+* Single, Page, and Archive templates
 * Typography
 * Color scheme (the orange is temporary)
 * Put microformats in (hAtom)
@@ -55,5 +58,5 @@ Feature Details:
     Costello: What?  
     Abbott: Second base.
 
-* Featured image support.
+* Featured image support. Featured image will adjust size for iPhone.
 

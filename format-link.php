@@ -1,5 +1,5 @@
 <?php
-	$link_info = extract_first_link($post);
+	$link_info = formattd_extract_first_link($post);
 	$link_url = $link_info['url'] ? $link_info['url'] : get_permalink();
 	$link_title = $link_info['title'] ? $link_info['title'] : get_the_title();
 	$link_domain = parse_url($link_url, PHP_URL_HOST);
@@ -10,7 +10,7 @@
 			</header>
 
 			<footer>
-			<?php echo timeAgo(); ?> <a href="<?php the_permalink(); ?>" title="<?php printf( esc_attr__( 'Permalink to %s', 'formattd' ), the_title_attribute( 'echo=0' ) ); ?>" rel="bookmark">#</a> <img class="favicon" height="16" width="16" src="http://www.google.com/s2/u/0/favicons?domain=<?php echo esc_attr($link_domain); ?>" />
+			<?php echo formattd_time_ago(); ?> <a href="<?php the_permalink(); ?>" title="<?php printf( esc_attr__( 'Permalink to %s', 'formattd' ), the_title_attribute( 'echo=0' ) ); ?>" rel="bookmark">#</a> <img class="favicon" height="16" width="16" src="http://www.google.com/s2/u/0/favicons?domain=<?php echo esc_attr($link_domain); ?>" />
 			<span class="comments-link"><?php comments_popup_link( __( 'Leave a comment', 'formattd' ), __( '1 Comment', 'formattd' ), __( '% Comments', 'formattd' ) ); ?></span>
 			<?php edit_post_link( __( 'Edit', 'formattd' ), '<span class="meta-sep">|</span> <span class="edit-link">', '</span>' ); ?>
 			</footer>	

@@ -115,6 +115,7 @@ p,ul,ol,blockquote {
 	clear: both;
 	width: 100%;
 	position: relative;
+	padding: 4px;
 }
 
 #main, #content-wrap {

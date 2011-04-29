@@ -47,15 +47,17 @@ if ( $is_iphone && stripos($_SERVER['HTTP_USER_AGENT'], 'ipad') !== false ) {
 	$is_iphone = false;
 }
 
+/* ...and iPod Touch... */
 if ( $is_iphone && stripos($_SERVER['HTTP_USER_AGENT'], 'ipod') !== false ) {
 	$is_ipod = true;
 	$is_iphone = false;
 }
 
+/* ...they're all in the iOS family... */
 if ( $is_iphone || $is_ipad || $is_ipod )
   $is_ios = true;
 
-$formattd_css_version = '0.0.15';
+$formattd_css_version = '0.0.16';
 
 /**
  * Set the content width based on the theme's design and stylesheet.
@@ -72,8 +74,6 @@ if ( ! isset( $content_width ) ) {
 
 /** Tell WordPress to run formattd_setup() when the 'after_setup_theme' hook is run. */
 add_action( 'after_setup_theme', 'formattd_setup', 9 );
-
-add_action( 'template_redirect', 'formattd_redirect' );
 
 if ( ! function_exists( 'formattd_setup' ) ):
 /**
@@ -132,7 +132,7 @@ function formattd_setup() {
 	  add_image_size('full', 9999, 9999);
 	}
 	
-	add_filter('the_content', 'gr_post_thumbnail');
+	add_filter('the_content', 'formattd_post_thumbnail');
 	
   	// Make theme available for translation
 	// Translations can be filed in the /languages/ directory
@@ -164,6 +164,7 @@ function formattd_redirect() {
 	@header( 'X-UA-Compatible: IE=edge,chrome=1' );
 }
 endif;
+add_action( 'template_redirect', 'formattd_redirect' );
 
 /**
  * Get our wp_nav_menu() fallback, wp_page_menu(), to show a home link.
@@ -173,12 +174,12 @@ endif;
  *
  * @since Formattd 1.0
  */
-if (! function_exists('formattd_page_menu_args') ) {
+if (! function_exists('formattd_page_menu_args') ) :
 function formattd_page_menu_args( $args ) {
 	$args['show_home'] = true;
 	return $args;
 }
-}
+endif;
 add_filter( 'wp_page_menu_args', 'formattd_page_menu_args' );
 
 /**
@@ -190,9 +191,11 @@ add_filter( 'wp_page_menu_args', 'formattd_page_menu_args' );
  * @since Formattd 1.0
  * @return int
  */
+if (! function_exists('formattd_excerpt_length') ) :
 function formattd_excerpt_length( $length ) {
 	return 75;
 }
+endif;
 add_filter( 'excerpt_length', 'formattd_excerpt_length' );
 
 /**
@@ -201,11 +204,11 @@ add_filter( 'excerpt_length', 'formattd_excerpt_length' );
  * @since Formattd 1.0
  * @return string "Continue Reading" link
  */
-if (! function_exists('formattd_continue_reading_link') ) {
+if (! function_exists('formattd_continue_reading_link') ) :
 function formattd_continue_reading_link() {
 	return ' <a href="'. get_permalink() . '">' . __( 'Continue reading <span class="meta-nav">&rarr;</span>', 'formattd' ) . '</a>';
 }
-}
+endif;
 
 /**
  * Replaces "[...]" (appended to automatically generated excerpts) with an ellipsis and formattd_continue_reading_link().
@@ -216,9 +219,11 @@ function formattd_continue_reading_link() {
  * @since Formattd 1.0
  * @return string An ellipsis
  */
+if (! function_exists('formattd_auto_excerpt_more') ) :
 function formattd_auto_excerpt_more( $more ) {
 	return ' &hellip;' . formattd_continue_reading_link();
 }
+endif;
 add_filter( 'excerpt_more', 'formattd_auto_excerpt_more' );
 
 /**
@@ -230,12 +235,14 @@ add_filter( 'excerpt_more', 'formattd_auto_excerpt_more' );
  * @since Formattd 1.0
  * @return string Excerpt with a pretty "Continue Reading" link
  */
+if (! function_exists('formattd_custom_excerpt_more') ) :
 function formattd_custom_excerpt_more( $output ) {
 	if ( has_excerpt() && ! is_attachment() ) {
 		$output .= formattd_continue_reading_link();
 	}
 	return $output;
 }
+endif;
 add_filter( 'get_the_excerpt', 'formattd_custom_excerpt_more' );
 
 /**
@@ -312,6 +319,7 @@ endif;
  * @since Formattd 1.0
  * @uses register_sidebar
  */
+if (! function_exists('formattd_widgets_init') ) :
 function formattd_widgets_init() {
 	// Header widget area
 	register_sidebar( array(
@@ -467,6 +475,7 @@ function formattd_widgets_init() {
 		'after_title' => '</h3>',
 	) );
 }
+endif;
 /** Register sidebars by running formattd_widgets_init() on the widgets_init hook. */
 add_action( 'widgets_init', 'formattd_widgets_init' );
 
@@ -483,9 +492,11 @@ add_action( 'widgets_init', 'formattd_widgets_init' );
  *
  * @since Formattd 1.0
  */
+if (! function_exists('formattd_remove_recent_comments_style') ) :
 function formattd_remove_recent_comments_style() {
 	add_filter( 'show_recent_comments_widget_style', '__return_false' );
 }
+endif;
 add_action( 'widgets_init', 'formattd_remove_recent_comments_style' );
 
 if ( ! function_exists( 'formattd_posted_on' ) ) :
@@ -539,6 +550,9 @@ function formattd_posted_in() {
 endif;
 
 if ( ! function_exists( 'formattd_post_date' ) ) :
+/**
+ * Generates the calendar-style dates which hang in the left margin.
+ */
 function formattd_post_date() {
 	$mon = get_the_time('M');
 	$day = get_the_time('d');
@@ -548,18 +562,24 @@ function formattd_post_date() {
 }
 endif;
 
-function gr_post_thumbnail($text) {
+if (! function_exists('formattd_post_thumbnail') ) :
+/**
+ * Utility filter to inject post thumbnails into posts.
+ */
+function formattd_post_thumbnail($text) {
   if (function_exists('has_post_thumbnail') && has_post_thumbnail() /* && (is_home() || is_singular()) */) {
     $text = '<div class="featured-image align-right" style="float: right;">' . get_the_post_thumbnail() . '</div>' . $text;
   }
   
   return $text;
 }
+endif;
 
+if (! function_exists('formattd_extract_first_link') ) :
 /*
  * Extract the title and url for a post object for a 'link' post format.
  */
-function extract_first_link($post) {
+function formattd_extract_first_link($post) {
   $str = $post->post_content;
   if ( preg_match('%^(https?://[^\s]*)$%', trim($str), $matches) ) {
     $url = $matches[1];
@@ -577,8 +597,10 @@ function extract_first_link($post) {
   
   return array( 'url' => $url, 'title' => $title );
 }
+endif;
 
-function  timeAgo($timestamp=0, $granularity=2, $format='Y-m-d H:i:s'){
+if (! function_exists('formattd_time_ago') ) :
+function  formattd_time_ago($timestamp=0, $granularity=2, $format='Y-m-d H:i:s'){
         if ( 0 === $timestamp ) {
           $timestamp = get_the_time("U");
         }
@@ -601,27 +623,42 @@ function  timeAgo($timestamp=0, $granularity=2, $format='Y-m-d H:i:s'){
         }
         else return date($format, $timestamp);
 }
+endif;
 
-
-function process_chat( $content ) {
+if (! function_exists('formattd_process_chat') ) :
+/**
+ * Auto-bold names in chat posts
+ */
+function formattd_process_chat( $content ) {
   if (has_post_format('chat')) {
     $content = preg_replace('%<p>\s*([^:]+):(\s.*)</p>%e', '\'<p class="chat"><span class="person person-\'.sanitize_title(\'\\1\').\'">\\1:</span>\\2</p>\'', $content);
   }
   return $content; 
 }
+endif;
+// Run after WP html formatting
+add_filter('the_content', 'formattd_process_chat', 15);
 
+
+if (! function_exists('formattd_post_format_detect') ) :
 /**
  * If a post comes from XML-RPC or APP, try to detect and set the post
- * format
+ * format. There is currently not a good single filter or action hook
+ * to make this easy. So we cheat. We use the wp_insert_post_data filter
+ * to detect the format, and also to strip out the sentinel string. At
+ * that time, we set a global flag containing the detected format.
+ *
+ * Then, we tell the wp_insert_post action hook to use that flag to
+ * actually set the post format accordingly.
  */
-function auto_post_format_detect( $data, $postarr ) {
-  global $dc_auto_post_format;
+function formattd_post_format_detect( $data, $postarr ) {
+  global $dc_formattd_post_format;
   if ( defined('XMLRPC_REQUEST') || defined('APP_REQUEST') ) {
     /* Look for an image at the beginning of a post. Optionally preceded
      * by <br> or <p> tags. Optionally linked with an <a> tag.
      */
 		if ( preg_match('%^(((<p[^>]*?>)?)((<br ?/?>)*?))*?(<a\s+[^>]+>)?<img\s+[^>]+>%', $post->post_content) ) {
-		  $dc_auto_post_format = 'image';
+		  $dc_formattd_post_format = 'image';
     }
     
     /* This is insufficient. And transcoding video is a real pain.  I think
@@ -633,20 +670,21 @@ function auto_post_format_detect( $data, $postarr ) {
      */
     /*
 		if ( preg_match('%^(<br ?/?>)*<video\s+[^>]+>%', $post->post_content) ) {
-		  $dc_auto_post_format = 'video';
+		  $dc_formattd_post_format = 'video';
     }
     */
     
     /*
-     * Look for :FORMAT: in the first 30 chars. If we see it, use that
-     * as the post format. E.g., '<p>:STATUS:Hanging with my buds</p>'
-     * would become a 'format-status' post.
+     * Look for a :FORMAT: sentinel string in the first 30 chars. If we see
+     * it, use that as the post format.  E.g., '<p>:status: Hanging with my
+     * buds</p>' would become a 'format-status' post.  The format specifier
+     * is not case-sensitive.
      */
     $count = preg_match('%:([A-Za-z]+):%', substr($data['post_content'], 0, 30), $matches);
     if ( $count ) {
       // Strip our :FORMAT: sentinel string from the content
       $data['post_content'] = preg_replace('%:'.$matches[1].':\s*%i', '', $data['post_content'], 1);
-      $dc_auto_post_format = $matches[1];
+      $dc_formattd_post_format = $matches[1];
     }
 
     /*
@@ -654,32 +692,31 @@ function auto_post_format_detect( $data, $postarr ) {
      * format.
      */
     if ( false !== strpos('[gallery]', $data['post_content']) ) {
-      $dc_auto_post_format = 'gallery';
+      $dc_formattd_post_format = 'gallery';
     }
 
-    if ( $dc_auto_post_format ) {
-      add_action( 'wp_insert_post', 'auto_post_format_set', 10, 2 );
+    if ( $dc_formattd_post_format ) {
+      add_action( 'wp_insert_post', 'formattd_post_format_set', 10, 2 );
     }
   }
   
   return $data;
 }
+endif;
 
-function auto_post_format_set( $postid, $post ) {
-  global $dc_auto_post_format;
+if (! function_exists('formattd_post_format_set') ) :
+function formattd_post_format_set( $postid, $post ) {
+  global $dc_formattd_post_format;
   // Validate format
-  $dc_auto_post_format = sanitize_key($dc_auto_post_format);
+  $dc_formattd_post_format = sanitize_key($dc_formattd_post_format);
   
-  if ( !array_key_exists( $dc_auto_post_format, get_post_format_strings() ) ) {
+  if ( !array_key_exists( $dc_formattd_post_format, get_post_format_strings() ) ) {
     // not a valid post format. do nothing.
     return;
   }
-  set_post_format( $postid, $dc_auto_post_format );
+  set_post_format( $postid, $dc_formattd_post_format );
 }
+endif;
 
-
-// Run after WP html formatting
-add_filter('the_content', 'process_chat', 15);
-
-add_filter('wp_insert_post_data', 'auto_post_format_detect', 10, 2);
+add_filter('wp_insert_post_data', 'formattd_post_format_detect', 10, 2);
 
