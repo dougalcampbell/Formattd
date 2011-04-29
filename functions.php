@@ -96,6 +96,7 @@ if ( ! function_exists( 'formattd_setup' ) ):
  * @since Formattd 1.0
  */
 function formattd_setup() {
+        global $is_ios, $is_iphone, $is_ipad, $is_ipod;
         // Load main stylesheet
         if (! is_admin() ) {
 	  wp_enqueue_style( 'formattd', get_template_directory_uri() . '/style.css', array(), $formattd_css_version );
@@ -114,7 +115,7 @@ function formattd_setup() {
 
 	// Auto-add a float-right thumbnail featured image, when set
         if (function_exists('set_post_thumbnail_size')) {
-                if ($is_ios) {
+                if ($is_iphone || $is_ipod) {
                   set_post_thumbnail_size( 120, 120, true );
                 } else {
         	  set_post_thumbnail_size( 240, 240, true );
