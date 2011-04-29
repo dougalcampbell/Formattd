@@ -26,6 +26,7 @@ It doesn't try to do everything under the sun.  It's just a simple blog
 theme.
 
 It's currently very much a work-in-progress. To Do:
+
 * Single, Page, and Archive templates
 * Typography
 * Color scheme (the orange is temporary)
