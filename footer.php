@@ -7,7 +7,7 @@
  *
  * @package WordPress
  * @subpackage Formattd
- * @since Formattd 1.0
+ * @since Formattd 0.1
  */
 ?>
 	</div><!--#content-->

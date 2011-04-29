@@ -9,7 +9,7 @@
  *
  * @package WordPress
  * @subpackage Formattd
- * @since Formattd 1.0
+ * @since Formattd 0.1
  */
 
 get_header(); ?>

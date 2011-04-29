@@ -35,7 +35,7 @@
  *
  * @package WordPress
  * @subpackage Formattd
- * @since Formattd 1.0
+ * @since Formattd 0.1
  */
 
 /**
@@ -93,7 +93,7 @@ if ( ! function_exists( 'formattd_setup' ) ):
  * @uses load_theme_textdomain() For translation/localization support.
  * @uses set_post_thumbnail_size() To set a custom post thumbnail size.
  *
- * @since Formattd 1.0
+ * @since Formattd 0.1
  */
 function formattd_setup() {
         global $is_ios, $is_iphone, $is_ipad, $is_ipod;
@@ -172,7 +172,7 @@ add_action( 'template_redirect', 'formattd_redirect' );
  * To override this in a child theme, remove the filter and optionally add
  * your own function tied to the wp_page_menu_args filter hook.
  *
- * @since Formattd 1.0
+ * @since Formattd 0.1
  */
 if (! function_exists('formattd_page_menu_args') ) :
 function formattd_page_menu_args( $args ) {
@@ -188,7 +188,7 @@ add_filter( 'wp_page_menu_args', 'formattd_page_menu_args' );
  * To override this length in a child theme, remove the filter and add your
  * own function tied to the excerpt_length filter hook.
  *
- * @since Formattd 1.0
+ * @since Formattd 0.1
  * @return int
  */
 if (! function_exists('formattd_excerpt_length') ) :
@@ -201,7 +201,7 @@ add_filter( 'excerpt_length', 'formattd_excerpt_length' );
 /**
  * Returns a "Continue Reading" link for excerpts
  *
- * @since Formattd 1.0
+ * @since Formattd 0.1
  * @return string "Continue Reading" link
  */
 if (! function_exists('formattd_continue_reading_link') ) :
@@ -216,7 +216,7 @@ endif;
  * To override this in a child theme, remove the filter and add your own
  * function tied to the excerpt_more filter hook.
  *
- * @since Formattd 1.0
+ * @since Formattd 0.1
  * @return string An ellipsis
  */
 if (! function_exists('formattd_auto_excerpt_more') ) :
@@ -232,7 +232,7 @@ add_filter( 'excerpt_more', 'formattd_auto_excerpt_more' );
  * To override this link in a child theme, remove the filter and add your own
  * function tied to the get_the_excerpt filter hook.
  *
- * @since Formattd 1.0
+ * @since Formattd 0.1
  * @return string Excerpt with a pretty "Continue Reading" link
  */
 if (! function_exists('formattd_custom_excerpt_more') ) :
@@ -264,7 +264,7 @@ if ( ! function_exists( 'formattd_comment' ) ) :
  *
  * Used as a callback by wp_list_comments() for displaying the comments.
  *
- * @since Formattd 1.0
+ * @since Formattd 0.1
  */
 function formattd_comment( $comment, $args, $depth ) {
 	$GLOBALS['comment'] = $comment;
@@ -316,7 +316,7 @@ endif;
  * To override formattd_widgets_init() in a child theme, remove the action hook and add your own
  * function tied to the init hook.
  *
- * @since Formattd 1.0
+ * @since Formattd 0.1
  * @uses register_sidebar
  */
 if (! function_exists('formattd_widgets_init') ) :
@@ -490,7 +490,7 @@ add_action( 'widgets_init', 'formattd_widgets_init' );
  * WordPress 3.0 will show the styles, but they won't have any effect on the
  * widget in default Formattd styling.
  *
- * @since Formattd 1.0
+ * @since Formattd 0.1
  */
 if (! function_exists('formattd_remove_recent_comments_style') ) :
 function formattd_remove_recent_comments_style() {
@@ -503,7 +503,7 @@ if ( ! function_exists( 'formattd_posted_on' ) ) :
 /**
  * Prints HTML with meta information for the current post-date/time and author.
  *
- * @since Formattd 1.0
+ * @since Formattd 0.1
  */
 function formattd_posted_on() {
 	printf( __( '<span class="%1$s">Posted on</span> %2$s <span class="meta-sep">by</span> %3$s', 'formattd' ),
@@ -526,7 +526,7 @@ if ( ! function_exists( 'formattd_posted_in' ) ) :
 /**
  * Prints HTML with meta information for the current post (category, tags and permalink).
  *
- * @since Formattd 1.0
+ * @since Formattd 0.1
  */
 function formattd_posted_in() {
 	// Retrieves tag list of current post, separated by commas.
