@@ -47,10 +47,15 @@ if ( $is_iphone && stripos($_SERVER['HTTP_USER_AGENT'], 'ipad') !== false ) {
 	$is_iphone = false;
 }
 
-if ( $is_iphone || $is_ipad )
+if ( $is_iphone && stripos($_SERVER['HTTP_USER_AGENT'], 'ipod') !== false ) {
+	$is_ipod = true;
+	$is_iphone = false;
+}
+
+if ( $is_iphone || $is_ipad || $is_ipod )
   $is_ios = true;
 
-$formattd_css_version = '0.0.13';
+$formattd_css_version = '0.0.15';
 
 /**
  * Set the content width based on the theme's design and stylesheet.
@@ -61,7 +66,7 @@ $formattd_css_version = '0.0.13';
 if ( ! isset( $content_width ) ) {
 	$content_width = 480;
         if ( $is_ios ) {
-          $content_width = 320; // for ios portrait orientation
+          $content_width = 250; // for ios portrait orientation
         }
 }
 
@@ -93,7 +98,7 @@ if ( ! function_exists( 'formattd_setup' ) ):
 function formattd_setup() {
         // Load main stylesheet
         if (! is_admin() ) {
-	  wp_enqueue_style('formattd', get_template_directory_uri() . '/style.css', array(), '0.0.13');
+	  wp_enqueue_style( 'formattd', get_template_directory_uri() . '/style.css', array(), $formattd_css_version );
   	}
 	// This theme styles the visual editor with editor-style.css to match the theme style.
 	add_editor_style();
