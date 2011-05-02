@@ -754,9 +754,9 @@ article.format-video .sharing a:hover {
 }
 
 
-.align-right { float: right; };
-.align-left { float: left; };
-.align-center { margin-left: auto; margin-right: auto; text-align: center; }
+.alignright { float: right; };
+.alignleft { float: left; };
+.aligncenter { margin-left: auto; margin-right: auto; text-align: center; }
 
 .ir { display: block; text-indent: -999em; overflow: hidden; background-repeat: no-repeat; text-align: left; direction: ltr; }
 .hidden { display: none; visibility: hidden; }
