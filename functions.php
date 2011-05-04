@@ -153,6 +153,9 @@ function formattd_setup() {
 
 	// Dropdown menus
         wp_enqueue_script('dropdown', trailingslashit( get_template_directory_uri() ) . 'js/jquery.dropdownPlain.js', array('jquery'), '1.1');
+
+	// iOS scaling fix
+        wp_enqueue_script('ios-scaling', trailingslashit( get_template_directory_uri() ) . 'js/ios-scaling-bugfix.js', array(), '1.0');
 }
 endif;
 
