@@ -346,27 +346,31 @@ aside.widget-area ul {
 }
 
 aside li.widget-container {
-	margin-bottom: 12px;
+	margin-bottom: 0.75em;
 }
 
-#primary .widget-area a, #footer-container a {
-	color: #eee;
+.widget-container ul li {
+	margin-bottom: 0.5em;
+}
+
+#primary.widget-area a, #footer-container a {
+	color: #EE4;
 	text-decoration: none;
 }
 
-#primary .widget-area a:link, #footer-container a:link {
+#primary.widget-area a:link, #footer-container a:link {
 
 }
 
-#primary .widget-area a:visited, #footer-container a:visited {
-	color: #ccc;
+#primary.widget-area a:visited, #footer-container a:visited {
+	color: #dd4;
 }
 
-#primary .widget-area a:hover, #footer-container a:hover {
-	color: #fff;
+#primary.widget-area a:hover, #footer-container a:hover {
+	color: #ff0;
 }
 
-#primary .widget-area a:active, #footer-container a:active {
+#primary.widget-area a:active, #footer-container a:active {
 
 }
 
