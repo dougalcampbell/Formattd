@@ -254,7 +254,7 @@ add_filter( 'get_the_excerpt', 'formattd_custom_excerpt_more' );
  * Galleries are styled by the theme in Formattd's style.css. This is just
  * a simple filter call that tells WordPress to not use the default styles.
  *
- * @since Formattd 1.2
+ * @since Formattd 0.1
  */
 add_filter( 'use_default_gallery_style', '__return_false' );
 
@@ -274,7 +274,8 @@ function formattd_comment( $comment, $args, $depth ) {
 	$GLOBALS['depth'] = $depth;
 	switch ( $comment->comment_type ) :
 		case '' :
-	?><!-- comment callback -->
+	?>
+	<!-- comment callback -->
 	<li <?php comment_class(); ?> id="li-comment-<?php comment_ID(); ?>">
 		<div id="comment-<?php comment_ID(); ?>">
 		<div class="comment-author vcard">

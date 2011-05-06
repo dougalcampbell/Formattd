@@ -374,7 +374,7 @@ aside li.widget-container {
 }
 
 #primary.widget-area a, #footer-container a {
-	color: #EE4;
+	color: #f8b75e;
 	text-decoration: none;
 }
 
@@ -383,11 +383,11 @@ aside li.widget-container {
 }
 
 #primary.widget-area a:visited, #footer-container a:visited {
-	color: #dd4;
+	color: #f8c887;
 }
 
 #primary.widget-area a:hover, #footer-container a:hover {
-	color: #ff0;
+	color: #ff8;
 }
 
 #primary.widget-area a:active, #footer-container a:active {
@@ -411,6 +411,7 @@ aside li.widget-container {
 article {
 	position: relative;
 	margin-bottom: 4em;
+	clear: both;
 }
 
 article header{
@@ -799,6 +800,7 @@ div.page-link a {
 
 #author-description {
 	margin: 0.5em 0;
+	line-height: 1.6;
 }
 
 #author-link {
