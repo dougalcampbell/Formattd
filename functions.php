@@ -57,7 +57,7 @@ if ( $is_iphone && stripos($_SERVER['HTTP_USER_AGENT'], 'ipod') !== false ) {
 if ( $is_iphone || $is_ipad || $is_ipod )
   $is_ios = true;
 
-$formattd_css_version = '0.0.17';
+$formattd_css_version = '0.0.18';
 
 /**
  * Set the content width based on the theme's design and stylesheet.

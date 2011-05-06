@@ -171,9 +171,29 @@ div.spacer {
 }
 
 #nav-above,#nav-below {
+	width: 100%;
+	float: left;
+	margin: 1em 0;
 	font-size: 1.25em;
 	font-variant: small-caps;
 }
+
+nav-previous, nav-next {
+	width: 45%;
+}
+
+nav-previous {
+	float: left;
+	text-align: left;
+	margin-left: 1em;
+}
+
+nav-next {
+	float: right;
+	text-align: right;
+	margin-right: 1em;
+}
+
 
 h2, h3{
 	margin: 0;
@@ -375,6 +395,7 @@ aside li.widget-container {
 }
 
 
+/** Content **/
 
 #main p {
 	font-family: Helvetica, Helvetica Neue, Arial;
@@ -614,6 +635,55 @@ article.format-audio::before {
 	font-style: oblique;
 }
 
+/** Comments **/
+div.comments {
+	margin-top: 2em;
+}
+
+.commentlist {
+	margin-top: 1em;
+	margin-left: 0;
+}
+
+.commentlist ul, .commentlist ul li {
+	position: relative;
+}
+
+li.comment {
+	list-style: none;
+	padding: 1em;
+	margin-top: 1em;
+}
+
+li.comment ul {
+	margin-left: 60px;
+}
+
+li.comment .reply {
+	padding-bottom: 2em;
+}
+
+.comment-author img.avatar {
+	position: absolute;
+	left: -40px;
+}
+
+li.bypostauthor {
+	border-radius: 8px;
+	-moz-border-radius: 8px;
+	-webkit-border-radius: 8px;
+	box-shadow: 4px 4px 8px 5px #ddd;
+	-moz-box-shadow: 4px 4px 8px 5px #ddd;
+	-webkit-box-shadow: 4px 4px 8px 5px #ddd;
+}
+
+li.bypostauthor>div {
+	padding: 10px;	
+}
+
+li.bypostauthor comment-author img.avatar {
+	left: 50px;
+}
 
 /* */
 #footer-container {
