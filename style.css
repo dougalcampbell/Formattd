@@ -412,6 +412,7 @@ article {
 	position: relative;
 	margin-bottom: 4em;
 	clear: both;
+	text-overflow: ellipsis;
 }
 
 article header{
@@ -561,7 +562,7 @@ article.format-standard div.gallery {
 }
 
 #content article img {
-	max-width: 90%; 
+	max-width: 100%; 
 }
 
 dl.gallery-item {

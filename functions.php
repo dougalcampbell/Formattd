@@ -57,7 +57,7 @@ if ( $is_iphone && stripos($_SERVER['HTTP_USER_AGENT'], 'ipod') !== false ) {
 if ( $is_iphone || $is_ipad || $is_ipod )
   $is_ios = true;
 
-$formattd_css_version = '0.0.18';
+$formattd_css_version = '0.0.19';
 
 /**
  * Set the content width based on the theme's design and stylesheet.
@@ -604,14 +604,16 @@ function formattd_extract_first_link($post) {
 endif;
 
 if (! function_exists('formattd_time_ago') ) :
-function  formattd_time_ago($timestamp=0, $granularity=2, $format='Y-m-d H:i:s'){
+function  formattd_time_ago($timestamp=0, $granularity=2, $format='Y-m-d H:i:s') {
         if ( 0 === $timestamp ) {
-          $timestamp = get_the_time("U");
+          // fetch the post time in UTC
+          $timestamp = get_post_time('U', true);
         }
+
         $difference = time() - $timestamp;
-        if($difference < 0) return 'just now';
+        if($difference < 0) return sprintf( '<span title="%s">%s</span>', esc_attr(date('c', $timestamp)), 'Not yet...') ;
         elseif($difference < 31536000){
-                $periods = array('mon' => 2592000, 'wk' => 604800,'day' => 86400,'hr' => 3600,'min' => 60,'sec' => 1);
+                $periods = array('mon' => 2592000, 'wk' => 604800,'day' => 86400,'hr' => 3600,'min' => 60 );
                 $output = '';
                 foreach($periods as $key => $value){
                         if($difference >= $value){
@@ -623,9 +625,10 @@ function  formattd_time_ago($timestamp=0, $granularity=2, $format='Y-m-d H:i:s')
                         }
                         if($granularity == 0) break;
                 }
-                return ($output ? $output : 'Just now').' ago';
+                $output = ($output ? $output : 'Just now').' ago';
+                return sprintf('<span title="%s">%s</span>', esc_attr(date('c',$timestamp)) ,$output);
         }
-        else return date($format, $timestamp);
+        else return sprintf( '<span title="%s">%s</span>', esc_attr(date('c', $timestamp)), date($format, $timestamp) );
 }
 endif;
 
