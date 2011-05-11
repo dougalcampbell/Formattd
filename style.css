@@ -178,17 +178,17 @@ div.spacer {
 	font-variant: small-caps;
 }
 
-nav-previous, nav-next {
+.nav-previous, .nav-next {
 	width: 45%;
 }
 
-nav-previous {
+.nav-previous {
 	float: left;
 	text-align: left;
 	margin-left: 1em;
 }
 
-nav-next {
+.nav-next {
 	float: right;
 	text-align: right;
 	margin-right: 1em;
