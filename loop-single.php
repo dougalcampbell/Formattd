@@ -70,7 +70,7 @@ if ( get_the_author_meta( 'description' ) ) : // If a user has filled out their 
 							<?php the_author_meta( 'description' ); ?>
 							<div id="author-link">
 								<a href="<?php echo get_author_posts_url( get_the_author_meta( 'ID' ) ); ?>" rel="author" class="url">
-									<?php printf( __( 'View all posts by <span class="fn">%s</span> <span class="meta-nav">&rarr;</span>', 'formattd' ), get_the_author() ); ?>
+									<?php printf( __( 'View all posts by <span class="fn n">%s</span> <span class="meta-nav">&rarr;</span>', 'formattd' ), get_the_author() ); ?>
 								</a>
 							</div><!-- #author-link	-->
 						</div><!-- #author-description -->

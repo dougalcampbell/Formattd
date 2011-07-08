@@ -67,8 +67,8 @@ if ( get_the_author_meta( 'description' ) ) : // If a user has filled out their 
 							<h2><?php printf( esc_attr__( 'About %s', 'formattd' ), get_the_author() ); ?></h2>
 							<?php the_author_meta( 'description' ); ?>
 							<div id="author-link">
-								<a href="<?php echo get_author_posts_url( get_the_author_meta( 'ID' ) ); ?>" rel="author">
-									<?php printf( __( 'View all posts by %s <span class="meta-nav">&rarr;</span>', 'formattd' ), get_the_author() ); ?>
+								<a href="<?php echo get_author_posts_url( get_the_author_meta( 'ID' ) ); ?>" class="url" rel="author">
+									<?php printf( __( 'View all posts by <span class="fn n">%s</span> <span class="meta-nav">&rarr;</span>', 'formattd' ), get_the_author() ); ?>
 								</a>
 							</div><!-- #author-link	-->
 						</div><!-- #author-description -->
