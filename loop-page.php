@@ -59,7 +59,7 @@ $comment_number_template = _n( '1 Comments', '% Comments', get_comments_number()
 		</article>
 <?php 
 if ( get_the_author_meta( 'description' ) ) : // If a user has filled out their description, show a bio on their entries  ?>
-					<div id="entry-author-info">
+					<div id="entry-author-info" class="vcard author">
 						<div id="author-avatar">
 							<?php echo get_avatar( get_the_author_meta( 'user_email' ), apply_filters( 'formattd_author_bio_avatar_size', 60 ) ); ?>
 						</div><!-- #author-avatar -->
