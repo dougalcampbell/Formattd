@@ -611,7 +611,7 @@ function  formattd_time_ago($timestamp=0, $granularity=2, $format='Y-m-d H:i:s')
         }
 
         $difference = time() - $timestamp;
-        if($difference < 0) return sprintf( '<span title="%s">%s</span>', esc_attr(date('c', $timestamp)), 'Not yet...') ;
+        if($difference < 0) return sprintf( '<span class="timestamp updated" title="%s">%s</span>', esc_attr(date('c', $timestamp)), 'Not yet...') ;
         elseif($difference < 31536000){
                 $periods = array('mon' => 2592000, 'wk' => 604800,'day' => 86400,'hr' => 3600,'min' => 60 );
                 $output = '';
@@ -626,9 +626,9 @@ function  formattd_time_ago($timestamp=0, $granularity=2, $format='Y-m-d H:i:s')
                         if($granularity == 0) break;
                 }
                 $output = ($output ? $output : 'Just now').' ago';
-                return sprintf('<span title="%s">%s</span>', esc_attr(date('c',$timestamp)) ,$output);
+                return sprintf('<span class="timestamp updated" title="%s">%s</span>', esc_attr(date('c',$timestamp)) ,$output);
         }
-        else return sprintf( '<span title="%s">%s</span>', esc_attr(date('c', $timestamp)), date($format, $timestamp) );
+        else return sprintf( '<span class="timestamp updated" title="%s">%s</span>', esc_attr(date('c', $timestamp)), date($format, $timestamp) );
 }
 endif;
 

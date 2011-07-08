@@ -61,7 +61,7 @@ $format = get_post_format();
 get_template_part('format', $format);
 
 if ( get_the_author_meta( 'description' ) ) : // If a user has filled out their description, show a bio on their entries  ?>
-					<div id="entry-author-info">
+					<div id="entry-author-info" class="vcard author">
 						<div id="author-avatar">
 							<?php echo get_avatar( get_the_author_meta( 'user_email' ), apply_filters( 'formattd_author_bio_avatar_size', 60 ) ); ?>
 						</div><!-- #author-avatar -->
@@ -69,8 +69,8 @@ if ( get_the_author_meta( 'description' ) ) : // If a user has filled out their 
 							<h2><?php printf( esc_attr__( 'About %s', 'formattd' ), get_the_author() ); ?></h2>
 							<?php the_author_meta( 'description' ); ?>
 							<div id="author-link">
-								<a href="<?php echo get_author_posts_url( get_the_author_meta( 'ID' ) ); ?>" rel="author">
-									<?php printf( __( 'View all posts by %s <span class="meta-nav">&rarr;</span>', 'formattd' ), get_the_author() ); ?>
+								<a href="<?php echo get_author_posts_url( get_the_author_meta( 'ID' ) ); ?>" rel="author" class="url">
+									<?php printf( __( 'View all posts by <span class="fn">%s</span> <span class="meta-nav">&rarr;</span>', 'formattd' ), get_the_author() ); ?>
 								</a>
 							</div><!-- #author-link	-->
 						</div><!-- #author-description -->
