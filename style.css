@@ -54,7 +54,7 @@ html { overflow-y: scroll; }
 a:hover, a:active { outline: none; }
 ul, ol { margin-left: 2em; }
 ol { list-style-type: decimal; }
-li { margin-bottom: 0.25em; font-size: 1.2em; }
+li { margin-bottom: 0.25em; }
 nav ul, nav li { margin: 0; list-style:none; list-style-image: none; }
 small { font-size: 85%; }
 strong, b, th { font-weight: bold; }
@@ -422,6 +422,8 @@ article header{
 	margin-bottom:0;
 	padding-bottom:0;
 }
+
+article li { font-size: 1.1em; }
 
 article.format-aside {
             width:70%;    
