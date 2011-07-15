@@ -56,7 +56,6 @@ $comment_number_template = _n( '1 Comments', '% Comments', get_comments_number()
 			<span class="comments-link"><?php comments_popup_link( __( 'Leave a comment', 'formattd' ), __( '1 Comment', 'formattd' ), __( '% Comments', 'formattd' ) ); ?></span>
 			<?php edit_post_link( __( 'Edit', 'formattd' ), '<span class="meta-sep">|</span> <span class="edit-link">', '</span>' ); ?>
 			</footer>	
-		</article>
 <?php 
 if ( get_the_author_meta( 'description' ) ) : // If a user has filled out their description, show a bio on their entries  ?>
 					<div id="entry-author-info" class="vcard author">
@@ -74,6 +73,7 @@ if ( get_the_author_meta( 'description' ) ) : // If a user has filled out their 
 						</div><!-- #author-description -->
 					</div><!-- #entry-author-info -->
 <?php endif; ?>
+		</article>
 
 					<div class="entry-utility">
 						<?php formattd_posted_in(); ?>
