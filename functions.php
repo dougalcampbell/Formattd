@@ -57,7 +57,7 @@ if ( $is_iphone && stripos($_SERVER['HTTP_USER_AGENT'], 'ipod') !== false ) {
 if ( $is_iphone || $is_ipad || $is_ipod )
   $is_ios = true;
 
-$formattd_css_version = '0.0.19';
+$formattd_css_version = '0.0.23';
 
 /**
  * Set the content width based on the theme's design and stylesheet.
@@ -224,7 +224,7 @@ endif;
  */
 if (! function_exists('formattd_auto_excerpt_more') ) :
 function formattd_auto_excerpt_more( $more ) {
-	return ' &hellip;' . formattd_continue_reading_link();
+	return ' &hellip; ' . formattd_continue_reading_link();
 }
 endif;
 add_filter( 'excerpt_more', 'formattd_auto_excerpt_more' );
@@ -580,7 +580,7 @@ function formattd_post_thumbnail($text) {
 endif;
 
 if (! function_exists('formattd_extract_first_link') ) :
-/*
+/**
  * Extract the title and url for a post object for a 'link' post format.
  */
 function formattd_extract_first_link($post) {
@@ -681,7 +681,7 @@ function formattd_post_format_detect( $data, $postarr ) {
     }
     */
     
-    /*
+    /**
      * Look for a :FORMAT: sentinel string in the first 30 chars. If we see
      * it, use that as the post format.  E.g., '<p>:status: Hanging with my
      * buds</p>' would become a 'format-status' post.  The format specifier
@@ -694,7 +694,7 @@ function formattd_post_format_detect( $data, $postarr ) {
       $dc_formattd_post_format = $matches[1];
     }
 
-    /*
+    /**
      * Look for [gallery] in the post. If we see it, set the gallery post
      * format.
      */
