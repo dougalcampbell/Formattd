@@ -65,7 +65,7 @@ sub, sup { font-size: 75%; line-height: 0; position: relative; }
 sup { top: -0.5em; }
 sub { bottom: -0.25em; }
 
-pre { white-space: pre; white-space: pre-wrap; word-wrap: break-word; padding: 15px; }
+pre { white-space: pre; white-space: pre-wrap; word-wrap: break-word; padding: 1em; }
 textarea { overflow: auto; }
 .ie6 legend, .ie7 legend { margin-left: -7px; } 
 input[type="radio"] { vertical-align: text-bottom; }
@@ -75,7 +75,7 @@ input[type="checkbox"] { vertical-align: bottom; }
 label, input[type="button"], input[type="submit"], input[type="image"], button { cursor: pointer; }
 button, input, select, textarea { margin: 0; }
 input:valid, textarea:valid   {  }
-input:invalid, textarea:invalid { border-radius: 1px; -moz-box-shadow: 0px 0px 5px red; -webkit-box-shadow: 0px 0px 5px red; box-shadow: 0px 0px 5px red; }
+input:invalid, textarea:invalid { border-radius: 1px; -moz-box-shadow: 0px 0px .3em red; -webkit-box-shadow: 0px 0px 5px red; box-shadow: 0px 0px 5px red; }
 .no-boxshadow input:invalid, .no-boxshadow textarea:invalid { background-color: #f0dddd; }
 
 ::-moz-selection{ background: #FF5E99; color:#fff; text-shadow: none; }
@@ -116,9 +116,7 @@ p,ul,ol,blockquote {
 	float: left;
 	clear: both;
 	width: 100%;
-	position: relative;
-	padding: 4px;
-}
+	position: relative;}
 
 #main, #content-wrap {
 	width: 100%;
@@ -208,8 +206,8 @@ h2, h3{
 #branding {
 	position: absolute;
 	float: left;
-	width: 100%;
 	height: 100%;
+	padding: 4px;
 }
 
 #title{
@@ -240,11 +238,24 @@ h3{
 	font-size: 2.0em;
 }
 
+h4{
+	font-size: 1.75em;
+}
+ 
+h5{
+	font-size: 1.5em;
+}
+
+h6{
+	font-size: 1.3em;
+}
+
+
 /* Main nav */
 
-#header-container nav{
+#header-container nav {
 	position: absolute;
-	bottom: 20px;
+	bottom: 1.25em;
 }
 
 #header-container nav ul, #header-container nav ul li {
@@ -256,7 +267,7 @@ h3{
 }
 
 #header-container nav a {
-	padding:20px 10px;
+	padding:1.25em .25em;
 	color: #eee;
 	text-decoration:none;
 	background-color:#e44d26;
@@ -303,7 +314,7 @@ h3{
 	width: 220px; 
 	visibility: hidden; 
 	position: absolute; 
-	top: 35px; left: -5px; 
+	top: 2.2em; left: -0.4em; 
 }
 
 #header-container nav ul ul li { 
@@ -346,7 +357,7 @@ h3{
 aside#primary {
 	color:white;
 	background-color:#f16529;
-	margin-bottom:30px;
+	margin-bottom:2em;
 	-webkit-border-radius: 10px;
            -moz-border-radius: 10px;
                 border-radius: 10px;
@@ -355,11 +366,11 @@ aside#primary {
 	        box-shadow:0 0px 8px 0px #AAA;	
 }
 #primary h3 {
-	font-size: 1.4em;
+	font-size: 1.5em;
 }
 
 aside.widget-area ul {
-	margin: 5px 10px;
+	margin: .3em .9em;
 }
 
 .widget-area li {
@@ -402,12 +413,12 @@ aside li.widget-container {
 #main p {
 	font-family: Helvetica, Helvetica Neue, Arial;
 	font-size: 16px;
-	line-height: 26px;
+	line-height: 1.625;
 	text-shadow:none;
 }
 
 #main header h2{
-	padding-bottom:10px;
+	padding-bottom:.9em;
 }
 
 article {
@@ -473,7 +484,7 @@ article.format-aside::after {
 }
 
 article.format-status header h2 {
-	font-size: 24px;
+	font-size: 1.5em;
 }
 
 article.format-status div.author-avatar img {
@@ -500,7 +511,7 @@ article.format-quote,article blockquote {
 	-webkit-border-radius: 10px;
            -moz-border-radius: 10px;
                 border-radius: 10px;
-	padding: 10px;
+	padding: .9em;
 }
 
 article footer {
@@ -516,12 +527,12 @@ article.format-link::before {
 }
 
 article.format-link header h2 {
-	font-size: 24px;
+	font-size: 1.5em;
 }
 
 article.format-quote header h2 {
 	font-style: oblique;
-	font-size: 24px;
+	font-size: 1.5em;
 }
 
 blockquote, article.format-quote .entry-content {
@@ -684,7 +695,7 @@ li.bypostauthor {
 }
 
 li.bypostauthor>div {
-	padding: 10px;	
+	padding: .9em;	
 }
 
 li.bypostauthor comment-author img.avatar {
@@ -698,8 +709,8 @@ li.bypostauthor comment-author img.avatar {
 	width: 100%;
 	background-color:#f16529;
 	height:240px;
-	border-top:20px solid #e44d26;
-	margin-top:50px;
+	border-top:1.25em solid #e44d26;
+	margin-top:3em;
 }
 /* */
 
@@ -862,7 +873,7 @@ article.format-video .sharing a:hover {
 
 }
 
-@media screen and (max-device-width: 480px) {
+@media screen and (max-width: 480px) {
 
   /* * / html { -webkit-text-size-adjust:none; -ms-text-size-adjust:none; } /* */
   #header-container { height: 100px !important; }
@@ -911,7 +922,19 @@ article.format-video .sharing a:hover {
   article.format-video::before { left: -36px !important; }
   article.format-chat::before { left: -36px !important; }
   div.author-avatar img { left: -36px !important; }
+
+/* Hide a bunch of admin bar stuff */
+#wp-admin-bar-wpseo-menu,
+#wp-admin-bar-stats,
+#wp-admin-bar-w3tc,
+#wp-admin-bar-site-name,
+#wp-admin-bar-my-account {
+	display: none;
 }
+
+
+
+} /* /@media */
 
 
 @media print {
