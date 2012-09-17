@@ -53,7 +53,7 @@
 	 *
 	 * Without further ado, the loop:
 	 */ ?>
-<?php while ( have_posts() ) : the_post();
+<?php $count = 0; while ( have_posts() ) : the_post();
 $comment_number_template = _n( '1 Comments', '% Comments', get_comments_number(), 'formattd' );
 
 // When displaying more than one post, put an interstitial widget

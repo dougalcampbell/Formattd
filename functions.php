@@ -42,6 +42,7 @@
  * In wp-includes/vars.php we set some user-agent variables. 
  * Let's be more specific about iPad vs iPhone:
  */
+$is_ios = $is_ipod = $is_ipad = false;
 if ( $is_iphone && stripos($_SERVER['HTTP_USER_AGENT'], 'ipad') !== false ) {
 	$is_ipad = true;
 	$is_iphone = false;
@@ -97,10 +98,6 @@ if ( ! function_exists( 'formattd_setup' ) ):
  */
 function formattd_setup() {
         global $is_ios, $is_iphone, $is_ipad, $is_ipod, $formattd_css_version;
-        // Load main stylesheet
-        if (! is_admin() ) {
-	  wp_enqueue_style( 'formattd', get_template_directory_uri() . '/style.css', array(), $formattd_css_version );
-  	}
 	// This theme styles the visual editor with editor-style.css to match the theme style.
 	add_editor_style();
 
@@ -151,11 +148,25 @@ function formattd_setup() {
 	// Add official.fm as an oembed provider:
 	wp_oembed_add_provider('http://official.fm/*', 'http://official.fm/services/oembed/');
 
+}
+endif;
+
+add_action('init', 'formattd_init', 9);
+
+if (!function_exists('formattd_init')) :
+function formattd_init() {
+  global $formattd_css_version;
+  
 	// Dropdown menus
         wp_enqueue_script('dropdown', trailingslashit( get_template_directory_uri() ) . 'js/jquery.dropdownPlain.js', array('jquery'), '1.1');
 
 	// iOS scaling fix
         wp_enqueue_script('ios-scaling', trailingslashit( get_template_directory_uri() ) . 'js/ios-scaling-bugfix.js', array(), '1.0');
+
+        // Load main stylesheet
+        if (! is_admin() ) {
+	  wp_enqueue_style( 'formattd', get_template_directory_uri() . '/style.css', array(), $formattd_css_version );
+  	}
 }
 endif;
 
